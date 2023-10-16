@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">airplane-android</string>
+    <string name="company">AirlineCompany</string>
 </resources>
