@@ -9,21 +9,33 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AirplaneAndroid"
+        android:theme="@style/Theme.AirplaneAndroid.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".admin.PlaneActivity"
             android:exported="false" />
         <activity
-            android:name=".InitialPageActivity"
+            android:name=".admin.AdminActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AirplaneAndroid.NoActionBar">
+        <activity
+            android:name=".AddUserInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AirplaneAndroid.NoActionBar">
+            android:name=".InitialPageActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,4 +13,6 @@
     <color name="background_color_50">#B3FFFFFF</color>
     <color name="text_color_header">#323232</color>
     <color name="text_color_description">#616161</color>
+    <color name="primary_80">#CC0194F3</color>
+    <color name="input">#CCCCCC</color>
 </resources>
