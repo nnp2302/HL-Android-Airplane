@@ -8,14 +8,14 @@
     tools:context=".RegisterActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/transport_ing_background_noradius"
         android:contentDescription="background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/transport_ing_background_noradius"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <View
@@ -29,13 +29,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="Thêm Máy Bay"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,44 +100,33 @@
         app:layout_constraintTop_toBottomOf="@+id/textThemLoai" />
 
 
-
-    <TextView
-        android:id="@+id/loginLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:text="Đã có tài khoản? Đăng nhập"
-        android:textColor="@color/input"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RadioGroup
+        android:id="@+id/radioGroupActive"
+        android:layout_width="290dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="436dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioButton
-        android:id="@+id/radioActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="268dp"
-        android:text="Kích Hoạt"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@+id/container"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toStartOf="@+id/container" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-    <RadioButton
-        android:id="@+id/radioNoActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
-        android:text="Không Kích Hoạt"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toStartOf="@+id/container" />
+        <RadioButton
+            android:id="@+id/radioActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kích Hoạt" />
+
+        <RadioButton
+            android:layout_marginStart="20dp"
+            android:id="@+id/radioNoActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không Kích Hoạt" />
+    </RadioGroup>
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/submitAddPlane"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="384dp"
@@ -148,5 +138,22 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <Button
+        android:id="@+id/backToList"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/shape_rounded_btn_5_0194f3"
+        android:text="Xem Danh Sách"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitAddPlane"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

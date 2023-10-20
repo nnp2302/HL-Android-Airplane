@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.airplane_android.R;
 import com.example.airplane_android.admin.adapter.PlaneAdapter;
@@ -14,6 +17,7 @@ import com.example.airplane_android.admin.baseInterface.IPlaneService;
 import com.example.airplane_android.admin.model.Plane;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,8 +43,25 @@ public class PlaneActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvPlaneView.addItemDecoration(itemDecoration);
 
-        planeAdapter = new PlaneAdapter(GetAllPlane());
+        planeAdapter = new PlaneAdapter(GetAllPlane(),this);
         rcvPlaneView.setAdapter(planeAdapter);
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButtonPlane);
+
+        // Set an OnClickListener for the floating action button
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create an Intent to start the new activity
+                Context context = view.getContext();
+                Intent intent = new Intent(context, PlaneAddActivity.class);
+
+
+
+                // Start the new activity
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -58,8 +79,14 @@ public class PlaneActivity extends AppCompatActivity {
                 }
             }
         });
-
-
         return plane;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(planeAdapter != null){
+            planeAdapter.release();
+        }
     }
 }
