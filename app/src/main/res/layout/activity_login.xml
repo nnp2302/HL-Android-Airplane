@@ -4,6 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_plane_background" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+    <View
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:background="@drawable/shape_rounded_container_top_20_fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Đăng nhập"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Email"
+        android:textColorHint="@color/input"
+        android:autofillHints="email"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/passContainer"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput">
+
+        <EditText
+            android:id="@+id/passInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:hint="Mật khẩu"
+            android:textColorHint="@color/input"
+            android:autofillHints="email"
+            android:textSize="16sp"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="@+id/passContainer"
+            app:layout_constraintEnd_toEndOf="@+id/passContainer"
+            app:layout_constraintStart_toStartOf="@+id/passContainer"
+            app:layout_constraintTop_toTopOf="@+id/passContainer" />
+
+        <ImageButton
+            android:id="@+id/togglePass"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="3dp"
+            android:background="@color/white"
+            android:contentDescription="togglePass"
+            app:layout_constraintBottom_toBottomOf="@+id/passContainer"
+            app:layout_constraintEnd_toEndOf="@+id/passContainer"
+            app:layout_constraintTop_toTopOf="@+id/passContainer"
+            app:srcCompat="@drawable/ic_eye_off" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Quên mật khẩu?"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passContainer" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_rounded_btn_5_0194f3"
+        android:text="Đăng nhập"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPass" />
+
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Chưa có tài khoản? Đăng ký"
+        android:textColor="@color/input"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

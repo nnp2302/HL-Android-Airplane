@@ -4,6 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".AddUserInfoActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_plane_background" />
+
+    <Button
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@android:color/transparent"
+        android:text="Bỏ qua"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:background="@drawable/shape_rounded_container_top_20_fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Thông tin"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/input" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/changeAvatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="116dp"
+        android:background="@drawable/shape_rounded_upload_camera_cccccc"
+        android:padding="10dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:autofillHints="username input"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Tên người dùng"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColorHint="@color/input"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+    <EditText
+        android:id="@+id/phoneInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Số điện thoại"
+        android:textColorHint="@color/input"
+        android:autofillHints="phone number input"
+        android:textSize="16sp"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/birthContainer"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneInput">
+
+        <EditText
+            android:id="@+id/birthInput"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:hint="Ngày sinh"
+            android:textColorHint="@color/input"
+            android:autofillHints="birthday input"
+            android:textSize="16sp"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/calendarView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="3dp"
+            android:background="@color/white"
+            android:contentDescription="calendar view"
+            app:layout_constraintBottom_toBottomOf="@+id/birthContainer"
+            app:layout_constraintEnd_toEndOf="@+id/birthContainer"
+            app:layout_constraintTop_toTopOf="@+id/birthContainer"
+            app:srcCompat="@drawable/ic_calendar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_rounded_btn_5_0194f3"
+        android:text="Tiếp"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

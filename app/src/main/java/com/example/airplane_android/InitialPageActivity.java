@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class InitialPageActivity extends AppCompatActivity {
     private Handler handler;
@@ -27,7 +24,7 @@ public class InitialPageActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(InitialPageActivity.this, MainActivity.class);
+                Intent intent = new Intent(InitialPageActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         }, 3000);
