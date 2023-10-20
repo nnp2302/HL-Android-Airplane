@@ -59,6 +59,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardplane"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_margin="5dp"
@@ -99,6 +100,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardtrip"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_margin="5dp"
@@ -145,6 +147,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardbill"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_margin="5dp"
@@ -185,6 +188,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/carduser"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_margin="5dp"

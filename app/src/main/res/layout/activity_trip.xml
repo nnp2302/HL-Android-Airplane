@@ -7,41 +7,42 @@
     tools:context=".admin.PlaneActivity">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewTrip"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/general_img_background_noradius"
+        android:background="@drawable/transport_ing_background_noradius"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:text="Plane"
+        android:text="Trip"
         android:textColor="@color/white"
         android:textSize="50dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/viewTrip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idPlaneItem"
+        android:id="@+id/idTripItem"
         android:layout_width="394dp"
         android:layout_height="517dp"
-        android:layout_alignBottom="@+id/view"
-        android:layout_alignParentTop="@+id/view"
+        android:layout_alignBottom="@+id/viewTrip"
+        android:layout_alignParentTop="@+id/viewTrip"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/viewTrip"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonPlane"
+        android:id="@+id/floatingActionButtonTrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

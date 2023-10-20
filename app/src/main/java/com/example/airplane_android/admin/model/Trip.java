@@ -1,47 +1,109 @@
 package com.example.airplane_android.admin.model;
 
+import java.util.Date;
+
 public class Trip {
-    private String brand;
-    private String type;
-    private boolean active;
-    private Number capacity;
+    private String from;
+    private String to;
+    private String businessPrice;
+    private String economyPrice;
+    private String businessTicket;
+    private String economyTicket;
+    private Date start;
+    private Date end;
+    private Date roundTrip;
+    private String idPlane;
 
-    public Trip(String brand, String type, boolean active, Number capacity) {
-        this.brand = brand;
-        this.type = type;
-        this.active = active;
-        this.capacity = capacity;
+    public Trip(String from, String to, String businessPrice, String economyPrice, String businessTicket, String economyTicket, Date start, Date end, Date roundTrip, String idPlane) {
+        this.from = from;
+        this.to = to;
+        this.businessPrice = businessPrice;
+        this.economyPrice = economyPrice;
+        this.businessTicket = businessTicket;
+        this.economyTicket = economyTicket;
+        this.start = start;
+        this.end = end;
+        this.roundTrip = roundTrip;
+        this.idPlane = idPlane;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getFrom() {
+        return from;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public String getType() {
-        return type;
+    public String getTo() {
+        return to;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTo(String to) {
+        this.to = to;
     }
 
-    public boolean isActive() {
-        return active;
+    public String getBusinessPrice() {
+        return businessPrice;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setBusinessPrice(String businessPrice) {
+        this.businessPrice = businessPrice;
     }
 
-    public Number getCapacity() {
-        return capacity;
+    public String getEconomyPrice() {
+        return economyPrice;
     }
 
-    public void setCapacity(Number capacity) {
-        this.capacity = capacity;
+    public void setEconomyPrice(String economyPrice) {
+        this.economyPrice = economyPrice;
+    }
+
+    public String getBusinessTicket() {
+        return businessTicket;
+    }
+
+    public void setBusinessTicket(String businessTicket) {
+        this.businessTicket = businessTicket;
+    }
+
+    public String getEconomyTicket() {
+        return economyTicket;
+    }
+
+    public void setEconomyTicket(String economyTicket) {
+        this.economyTicket = economyTicket;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public Date getRoundTrip() {
+        return roundTrip;
+    }
+
+    public void setRoundTrip(Date roundTrip) {
+        this.roundTrip = roundTrip;
+    }
+
+    public String getIdPlane() {
+        return idPlane;
+    }
+
+    public void setIdPlane(String idPlane) {
+        this.idPlane = idPlane;
     }
 }

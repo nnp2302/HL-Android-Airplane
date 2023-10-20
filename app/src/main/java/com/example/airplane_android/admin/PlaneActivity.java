@@ -1,16 +1,65 @@
 package com.example.airplane_android.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
 import com.example.airplane_android.R;
+import com.example.airplane_android.admin.adapter.PlaneAdapter;
+import com.example.airplane_android.admin.baseInterface.IPlaneService;
+import com.example.airplane_android.admin.model.Plane;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlaneActivity extends AppCompatActivity {
+    FirebaseFirestore firestore;
+    private RecyclerView rcvPlaneView;
+    private PlaneAdapter planeAdapter;
+    private IPlaneService planeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plane);
+        firestore = FirebaseFirestore.getInstance();
+        rcvPlaneView = findViewById(R.id.idPlaneItem);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvPlaneView.setLayoutManager(linearLayoutManager);
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvPlaneView.addItemDecoration(itemDecoration);
+
+        planeAdapter = new PlaneAdapter(GetAllPlane());
+        rcvPlaneView.setAdapter(planeAdapter);
+    }
+
+
+    private List<Plane> GetAllPlane() {
+        List<Plane> plane = new ArrayList<>();
+        firestore.collection("Plane").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    Plane viewAllModel = documentSnapshot.toObject(Plane.class);
+                    plane.add(viewAllModel);
+                    planeAdapter.notifyDataSetChanged();
+
+                }
+            }
+        });
+
+
+        return plane;
     }
 }

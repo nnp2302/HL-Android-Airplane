@@ -12,6 +12,9 @@
         android:theme="@style/Theme.AirplaneAndroid.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".admin.TripActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.PlaneActivity"
             android:exported="false" />
         <activity

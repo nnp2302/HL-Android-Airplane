@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IPlaneService {
     List<Plane> GetAll();
-    Plane GetPlaneById(String id);
-    void CreatePlane(Plane plane);
-    void EditPlane(Plane plane);
-    void DeletePlane(String id);
+//    Plane GetPlaneById(String id);
+//    void CreatePlane(Plane plane);
+//    void EditPlane(Plane plane);
+//    void DeletePlane(String id);
 
 }
