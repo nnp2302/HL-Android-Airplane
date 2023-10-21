@@ -1,5 +1,6 @@
 package com.example.airplane_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.airplane_android.utils.ValidateUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -25,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText emailInput, passInput, rePassInput;
     ImageButton btnTogglePass, btnToggleRePass, btnBack;
     Button btnSubmit;
+    FirebaseAuth auth;
+    FirebaseFirestore fireStore;
 
     private boolean showPass = false, showRePass = false;
 
@@ -41,6 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
         btnToggleRePass = findViewById(R.id.toggleRePass);
         btnBack = findViewById(R.id.back);
         btnSubmit = findViewById(R.id.submit);
+
+        auth = FirebaseAuth.getInstance();
+        fireStore = FirebaseFirestore.getInstance();
 
         // (17/10/2023 17:05) Hưng Hà - biến đổi màu text "Đăng nhập"
         final String registerTxt = txtLoginLink.getText().toString();
@@ -126,8 +143,35 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(RegisterActivity.this, AddUserInfoActivity.class);
-                startActivity(intent);
+                auth.createUserWithEmailAndPassword(emailValue, passValue).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("email", emailValue);
+
+                            fireStore.collection("Users").add(userData)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
+                                                    Intent intent = new Intent(RegisterActivity.this, AddUserInfoActivity.class);
+                                                    intent.putExtra("userId", documentReference.getId());
+                                                    startActivity(intent);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(RegisterActivity.this, "Có lỗi trong quá trình xử lý", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
