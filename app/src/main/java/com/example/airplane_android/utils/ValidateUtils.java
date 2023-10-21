@@ -1,5 +1,6 @@
 package com.example.airplane_android.utils;
 
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class ValidateUtils {
@@ -23,7 +24,11 @@ public class ValidateUtils {
     }
 
     public static boolean checkBirthDay(String birth) {
-        final String regex = "^(?:0[1-9]|[12]\\d|3[01])/(?:0[1-9]|1[0-2])/(19\\d{2}|20(?:00|01|02|03|04))(?=\\b|$)";
-        return Pattern.matches(regex, birth);
+        String[] birthSplit = birth.split("/");
+        int birthOfYear = Integer.parseInt(birthSplit[2]);
+        Calendar calendar = Calendar.getInstance();
+        int[] currentYear = {calendar.get(Calendar.YEAR)};
+
+        return (currentYear[0] - birthOfYear) < 16;
     }
 }
