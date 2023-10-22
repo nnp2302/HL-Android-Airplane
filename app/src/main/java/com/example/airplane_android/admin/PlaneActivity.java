@@ -10,12 +10,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.airplane_android.R;
 import com.example.airplane_android.admin.adapter.PlaneAdapter;
-import com.example.airplane_android.admin.baseInterface.IPlaneService;
 import com.example.airplane_android.admin.model.Plane;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,7 +33,6 @@ public class PlaneActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     private RecyclerView rcvPlaneView;
     private PlaneAdapter planeAdapter;
-    private IPlaneService planeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +58,30 @@ public class PlaneActivity extends AppCompatActivity {
                 // Create an Intent to start the new activity
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PlaneAddActivity.class);
-
-
-
                 // Start the new activity
                 context.startActivity(intent);
             }
         });
     }
-
+//    private void deleteData(Plane plane) {
+//        String id = plane.getId();
+//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+//        firestore.collection("Plane").document(id)
+//                .delete()
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(PlaneActivity.this,"Xóa Thành Công",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
+//    }
 
     private List<Plane> GetAllPlane() {
         List<Plane> plane = new ArrayList<>();
@@ -89,4 +107,5 @@ public class PlaneActivity extends AppCompatActivity {
             planeAdapter.release();
         }
     }
+
 }

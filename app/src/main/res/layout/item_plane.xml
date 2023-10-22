@@ -8,8 +8,8 @@
     android:padding="10dp">
     <ImageView
         android:id="@+id/img_avatar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:paddingLeft="10dp"
         android:src="@mipmap/ic_launcher" />
 
@@ -27,18 +27,18 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/container_item"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hãng" />
+                android:text="Hãng:" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Loại" />
+                android:text="Loại:" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,19 +46,19 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="3dp"
             >
 
 
             <TextView
                 android:id="@+id/textTenHang"
-                android:layout_width="match_parent"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/textTenLoai"
-                android:layout_width="match_parent"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
         </LinearLayout>
@@ -67,28 +67,41 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             >
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sức Chứa" />
+                android:text="Sức Chứa:" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="3dp"
             >
 
             <TextView
                 android:id="@+id/textSucChua"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+
                 android:text="TextView" />
         </LinearLayout>
+
+
+            <ImageView
+
+                android:id="@+id/iconCheckActive"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:src="@drawable/check"
+
+                />
+
+
     </LinearLayout>
 
 

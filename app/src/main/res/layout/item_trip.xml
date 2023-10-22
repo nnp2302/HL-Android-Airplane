@@ -71,11 +71,11 @@
             >
 
 
-            <TextView
+<!--            <TextView-->
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Trạng Thái" />
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Trạng Thái" />-->
 
             <TextView
 
@@ -92,11 +92,11 @@
             >
 
 
-            <TextView
-                android:id="@+id/textTrangThai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+<!--            <TextView-->
+<!--                android:id="@+id/textTrangThai"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView" />-->
 
             <TextView
                 android:id="@+id/textSucChua"
