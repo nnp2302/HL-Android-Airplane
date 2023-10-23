@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 public class InitialPageActivity extends AppCompatActivity {
-    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +19,10 @@ public class InitialPageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(InitialPageActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(InitialPageActivity.this, MainActivity.class);
+            startActivity(intent);
         }, 3000);
-
     }
 }
