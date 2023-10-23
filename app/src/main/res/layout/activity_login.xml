@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginStart="25dp"
+        android:contentDescription="back"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:text="Đăng nhập"
+        android:text="@string/sign_in"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="35sp"
@@ -48,64 +49,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/emailInput"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailContainer"
         android:layout_width="350dp"
         android:layout_height="50dp"
+        android:hint="@string/email"
         android:layout_marginTop="40dp"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="15dp"
-        android:background="@drawable/selector_rounded_input_5"
-        android:ems="10"
-        android:hint="Email"
-        android:textColorHint="@color/input"
-        android:autofillHints="email"
-        android:textSize="16sp"
-        android:inputType="textEmailAddress"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/container" />
+        app:layout_constraintTop_toTopOf="@+id/container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/passContainer"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput">
-
-        <EditText
-            android:id="@+id/passInput"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
-            android:background="@drawable/selector_rounded_input_5"
-            android:ems="10"
-            android:hint="Mật khẩu"
-            android:textColorHint="@color/input"
-            android:autofillHints="email"
             android:textSize="16sp"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="@+id/passContainer"
-            app:layout_constraintEnd_toEndOf="@+id/passContainer"
-            app:layout_constraintStart_toStartOf="@+id/passContainer"
-            app:layout_constraintTop_toTopOf="@+id/passContainer" />
+            android:inputType="textEmailAddress" />
 
-        <ImageButton
-            android:id="@+id/togglePass"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="3dp"
-            android:background="@color/white"
-            android:contentDescription="togglePass"
-            app:layout_constraintBottom_toBottomOf="@+id/passContainer"
-            app:layout_constraintEnd_toEndOf="@+id/passContainer"
-            app:layout_constraintTop_toTopOf="@+id/passContainer"
-            app:srcCompat="@drawable/ic_eye_off" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passContainer"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="@string/password"
+        android:layout_marginTop="25dp"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="@color/input"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textSize="16sp"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/forgotPass"
@@ -113,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:text="Quên mật khẩu?"
+        android:text="@string/forgot_pass"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/primary"
@@ -125,8 +116,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/shape_rounded_btn_5_0194f3"
-        android:text="Đăng nhập"
+        android:text="@string/sign_in"
         android:textSize="16sp"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Chưa có tài khoản? Đăng ký"
+        android:text="@string/no_account"
         android:textColor="@color/input"
         android:textStyle="bold"
         android:textSize="16sp"

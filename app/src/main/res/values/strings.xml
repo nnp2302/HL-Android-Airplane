@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">airplane-android</string>
     <string name="company">AirlineCompany</string>
+    <string name="main_home">Trang chủ</string>
+    <string name="main_user">Tài khoản</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="re_password">Nhập lại mật khẩu</string>
+    <string name="username">Tên người dùng</string>
+    <string name="birthday">Ngày sinh</string>
+    <string name="gender">Giới tính</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="txt_continue">Tiếp</string>
+    <string name="no_account">Chưa có tài khoản? Đăng ký</string>
+    <string name="has_account">Đã có tài khoản? Đăng nhập</string>
+    <string name="forgot_pass">Quên mật khẩu?</string>
+    <string name="reset_pass">Đặt lại mật khẩu</string>
 </resources>
