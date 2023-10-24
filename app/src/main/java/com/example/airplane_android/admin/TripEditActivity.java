@@ -140,14 +140,6 @@ public class TripEditActivity extends AppCompatActivity {
             });
 
             submitEditTrip.setOnClickListener(new View.OnClickListener() {
-//                fromEdit= findViewById(R.id.textSuaNoiDi);
-//                toEdit= findViewById(R.id.textSuaNoiDen);
-//                startDateEdit= findViewById(R.id.textSuaBatDau);
-//                endDateEdit= findViewById(R.id.textSuaKetThuc);
-//                priceBusinessEdit= findViewById(R.id.textSuaGiaBusiness);
-//                priceEconomyEdit= findViewById(R.id.textSuaGiaEconomy);
-//                businessTicketEdit= findViewById(R.id.textSuaSoLuongBusiness);
-//                economyTicketEdit= findViewById(R.id.textSuaSoLuongEconomy);
                 @Override
                 public void onClick(View v) {
                     String id = trip.getId().toString();
@@ -159,7 +151,14 @@ public class TripEditActivity extends AppCompatActivity {
                     String priceEconomyEditSubmit = priceEconomyEdit.getText().toString().trim();
                     String businessTicketEditSubmit = businessTicketEdit.getText().toString().trim();
                     String economyTicketEditSubmit = economyTicketEdit.getText().toString().trim();
-
+                    if(fromEditSubmit.isEmpty() || toEditSubmit.isEmpty() ||
+                            startDateEditSubmit.isEmpty() || endDateEditSubmit.isEmpty() ||
+                            priceBusinessEditSubmit.isEmpty()||  priceEconomyEditSubmit.isEmpty()||
+                            businessTicketEditSubmit.isEmpty() || economyTicketEditSubmit.isEmpty()
+                    ){
+                        Toast.makeText(TripEditActivity.this,"Các Ô Không Được Phép Bỏ Trống",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     UpdateData(id,fromEditSubmit,toEditSubmit,startDateEditSubmit,endDateEditSubmit
                         ,priceBusinessEditSubmit,priceEconomyEditSubmit,businessTicketEditSubmit,economyTicketEditSubmit,
                             selectedEditPlane

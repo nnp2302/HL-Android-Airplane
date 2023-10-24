@@ -6,12 +6,6 @@
     android:layout_marginEnd="10dp"
     android:background="@color/background_color"
     android:padding="10dp">
-    <ImageView
-        android:id="@+id/img_avatar"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:paddingLeft="10dp"
-        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:id="@+id/container_item"
@@ -27,17 +21,19 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/container_item"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Hãng:" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Loại:" />
         </LinearLayout>
 
@@ -46,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="10dp"
             >
 
 
@@ -67,17 +63,19 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             >
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Sức Chứa:" />
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Mã:" />
         </LinearLayout>
         <LinearLayout
@@ -85,7 +83,7 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="10dp"
             >
             <TextView
                 android:id="@+id/textSucChua"

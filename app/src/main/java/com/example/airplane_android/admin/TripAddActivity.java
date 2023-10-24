@@ -109,6 +109,15 @@ public class TripAddActivity extends AppCompatActivity {
                 String textGiaVeBusiness = priceBusiness.getText().toString().trim();
                 String textSLeconomy = economyTicket.getText().toString().trim();
                 String textSLbusiness = businessTicket.getText().toString().trim();
+
+                if(textBatDau.isEmpty() || textKetThuc.isEmpty() ||
+                    textNoiDi.isEmpty() || textNoiDen.isEmpty() ||
+                        textGiaVeEconomy.isEmpty()||  textGiaVeBusiness.isEmpty()||
+                        textSLeconomy.isEmpty() || textSLbusiness.isEmpty()
+                ){
+                    Toast.makeText(TripAddActivity.this,"Các Ô Không Được Phép Bỏ Trống",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 uploadData(textBatDau,textKetThuc,textNoiDi,textNoiDen,textGiaVeEconomy,textGiaVeBusiness,textSLeconomy,textSLbusiness,selectedPlane);
             }
         });

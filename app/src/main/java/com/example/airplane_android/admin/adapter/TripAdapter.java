@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.airplane_android.R;
+import com.example.airplane_android.admin.DetailTripActivity;
 import com.example.airplane_android.admin.PlaneEditActivity;
 import com.example.airplane_android.admin.TripEditActivity;
 import com.example.airplane_android.admin.model.Plane;
@@ -63,6 +64,17 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             public boolean onLongClick(View v) {
                 showOptionsDialog(trip);
                 return true;
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailTripActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("trip",trip);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
         });
     }
