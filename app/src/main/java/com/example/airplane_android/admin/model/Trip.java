@@ -1,109 +1,123 @@
 package com.example.airplane_android.admin.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Trip {
-    private String from;
-    private String to;
-    private String businessPrice;
-    private String economyPrice;
-    private String businessTicket;
-    private String economyTicket;
-    private Date start;
-    private Date end;
-    private Date roundTrip;
-    private String idPlane;
+public class Trip implements Serializable {
+    private String Id;
+    private String From;
+    private String To;
+    private int BusinessPrice;
+    private int EconomyPrice;
+    private int BusinessTicket;
+    private int EconomyTicket;
+    private String Start;
+    private String End;
+    private String RoundTrip;
+    private String PlaneId;
+    public Trip() {
 
-    public Trip(String from, String to, String businessPrice, String economyPrice, String businessTicket, String economyTicket, Date start, Date end, Date roundTrip, String idPlane) {
-        this.from = from;
-        this.to = to;
-        this.businessPrice = businessPrice;
-        this.economyPrice = economyPrice;
-        this.businessTicket = businessTicket;
-        this.economyTicket = economyTicket;
-        this.start = start;
-        this.end = end;
-        this.roundTrip = roundTrip;
-        this.idPlane = idPlane;
+    }
+
+    public Trip(String id, String from, String to, int businessPrice, int economyPrice, int businessTicket, int economyTicket, String start, String end, String roundTrip, String idPlane) {
+        Id = id;
+        From = from;
+        To = to;
+        BusinessPrice = businessPrice;
+        EconomyPrice = economyPrice;
+        BusinessTicket = businessTicket;
+        EconomyTicket = economyTicket;
+        Start = start;
+        End = end;
+        RoundTrip = roundTrip;
+        PlaneId = idPlane;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getFrom() {
-        return from;
+        return From;
     }
 
     public void setFrom(String from) {
-        this.from = from;
+        From = from;
     }
 
     public String getTo() {
-        return to;
+        return To;
     }
 
     public void setTo(String to) {
-        this.to = to;
+        To = to;
     }
 
-    public String getBusinessPrice() {
-        return businessPrice;
+    public Number getBusinessPrice() {
+        return BusinessPrice;
     }
 
-    public void setBusinessPrice(String businessPrice) {
-        this.businessPrice = businessPrice;
+    public void setBusinessPrice(int businessPrice) {
+        BusinessPrice = businessPrice;
     }
 
-    public String getEconomyPrice() {
-        return economyPrice;
+    public Number getEconomyPrice() {
+        return EconomyPrice;
     }
 
-    public void setEconomyPrice(String economyPrice) {
-        this.economyPrice = economyPrice;
+    public void setEconomyPrice(int economyPrice) {
+        EconomyPrice = economyPrice;
     }
 
-    public String getBusinessTicket() {
-        return businessTicket;
+    public Number getBusinessTicket() {
+        return BusinessTicket;
     }
 
-    public void setBusinessTicket(String businessTicket) {
-        this.businessTicket = businessTicket;
+    public void setBusinessTicket(int businessTicket) {
+        BusinessTicket = businessTicket;
     }
 
-    public String getEconomyTicket() {
-        return economyTicket;
+    public Number getEconomyTicket() {
+        return EconomyTicket;
     }
 
-    public void setEconomyTicket(String economyTicket) {
-        this.economyTicket = economyTicket;
+    public void setEconomyTicket(int economyTicket) {
+        EconomyTicket = economyTicket;
     }
 
-    public Date getStart() {
-        return start;
+    public String getStart() {
+        return Start;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setStart(String start) {
+        Start = start;
     }
 
-    public Date getEnd() {
-        return end;
+    public String getEnd() {
+        return End;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setEnd(String end) {
+        End = end;
     }
 
-    public Date getRoundTrip() {
-        return roundTrip;
+    public String getRoundTrip() {
+        return RoundTrip;
     }
 
-    public void setRoundTrip(Date roundTrip) {
-        this.roundTrip = roundTrip;
+    public void setRoundTrip(String roundTrip) {
+        RoundTrip = roundTrip;
     }
 
-    public String getIdPlane() {
-        return idPlane;
+    public String getPlaneId() {
+        return PlaneId;
     }
 
-    public void setIdPlane(String idPlane) {
-        this.idPlane = idPlane;
+    public void setPlaneId(String planeId) {
+        PlaneId = planeId;
     }
 }

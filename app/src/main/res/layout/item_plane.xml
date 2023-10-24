@@ -74,6 +74,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sức Chứa:" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mã:" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -82,10 +87,15 @@
             android:orientation="vertical"
             android:layout_marginStart="3dp"
             >
-
             <TextView
                 android:id="@+id/textSucChua"
-                android:layout_width="50dp"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                />
+            <TextView
+                android:id="@+id/textMaMayBay"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
 
                 android:text="TextView" />
@@ -96,7 +106,7 @@
 
                 android:id="@+id/iconCheckActive"
                 android:layout_width="35dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:src="@drawable/check"
 
                 />

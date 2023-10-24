@@ -52,14 +52,11 @@ public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHol
         boolean isActive = plane.isActive();
         ImageView iconCheckActive = holder.itemView.findViewById(R.id.iconCheckActive);
         if(isActive == true){
-
             iconCheckActive.setVisibility(View.VISIBLE);
-
-//            holder.textTrangThai.setText("Kích Hoạt");
         }else {
             iconCheckActive.setVisibility(View.GONE);
-//            holder.textTrangThai.setText("Đã Tắt");
         }
+        holder.textMaMayBay.setText(plane.getId());
         holder.textTenHang.setText(plane.getBrand());
         holder.textTenLoai.setText(plane.getType());
         holder.textSucChua.setText(plane.getCapacity().toString());
@@ -73,16 +70,6 @@ public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHol
             }
         });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intentToEditPlane = new Intent(context, PlaneEditActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("plane",plane);
-//                intentToEditPlane.putExtras(bundle);
-//                context.startActivity(intentToEditPlane);
-            }
-        });
     }
 
     private void showOptionsDialog(Plane plane) {
@@ -137,18 +124,15 @@ public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHol
 
     public class PlaneViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView imgAvatar;
-        private TextView textNoItems,textTenHang;
-        private TextView textTenLoai;
-        private TextView textSucChua;
+        private TextView textTenHang,textMaMayBay,textTenLoai,textSucChua;
         private FloatingActionButton flButton;
 //        private TextView textTrangThai;
         public PlaneViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgAvatar = itemView.findViewById(R.id.img_avatar);
             textTenHang = itemView.findViewById(R.id.textTenHang);
             textTenLoai = itemView.findViewById(R.id.textTenLoai);
             textSucChua = itemView.findViewById(R.id.textSucChua);
+            textMaMayBay = itemView.findViewById(R.id.textMaMayBay);
             flButton=itemView.findViewById(R.id.floatingActionButtonPlane);
 
 //            textTrangThai = itemView.findViewById(R.id.textTrangThai);

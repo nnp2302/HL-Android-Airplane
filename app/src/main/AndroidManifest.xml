@@ -17,6 +17,12 @@
             android:name=".ForgotPassActivity"
             android:exported="false" />
         <activity
+            android:name=".admin.TripEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.TripAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.PlaneEditActivity"
             android:exported="false" />
         <activity
@@ -29,7 +35,7 @@
             android:name=".admin.PlaneActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminActivity"
+            android:name=".InitialPageActivity"
             android:exported="true"
             android:theme="@style/Theme.AirplaneAndroid.NoActionBar" />
         <activity
@@ -45,7 +51,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".InitialPageActivity"
+            android:name=".admin.AdminActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

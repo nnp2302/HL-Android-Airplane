@@ -7,38 +7,38 @@
     android:background="@color/background_color"
     android:padding="10dp">
     <ImageView
-        android:id="@+id/img_avatar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/img_avatartrip"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:paddingLeft="10dp"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:id="@+id/container_item"
+        android:id="@+id/container_itemtrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toEndOf="@+id/img_avatar"
+        android:layout_toEndOf="@+id/img_avatartrip"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/layout_1"
+            android:id="@+id/layout_1trip"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/container_item"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hãng" />
+                android:text="Đi:" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Loại" />
+                android:text="Đến:" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,19 +46,19 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="3dp"
             >
 
 
             <TextView
-                android:id="@+id/textTenHang"
-                android:layout_width="match_parent"
+                android:id="@+id/textNoiDi"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/textTenLoai"
-                android:layout_width="match_parent"
+                android:id="@+id/textNoiDen"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
         </LinearLayout>
@@ -67,41 +67,38 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             >
-
-
-<!--            <TextView-->
-
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Trạng Thái" />-->
-
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sức Chứa" />
+                android:text="Bắt Đầu:" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kết Thúc:" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/layout_1"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="3dp"
             >
 
-
-<!--            <TextView-->
-<!--                android:id="@+id/textTrangThai"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="TextView" />-->
-
             <TextView
-                android:id="@+id/textSucChua"
-                android:layout_width="match_parent"
+                android:id="@+id/textBatDau"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:text="TextView" />
+            <TextView
+                android:id="@+id/textKetThuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="TextView" />
         </LinearLayout>
     </LinearLayout>

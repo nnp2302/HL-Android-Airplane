@@ -40,9 +40,8 @@
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
-        android:id="@+id/textThemHangBay"
+        android:id="@+id/textThemMaMayBay"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
@@ -50,7 +49,7 @@
         android:paddingHorizontal="15dp"
         android:background="@drawable/selector_rounded_input_5"
         android:ems="10"
-        android:hint="Hãng Bay"
+        android:hint="Mã Máy Bay"
         android:textColorHint="@color/input"
         android:autofillHints="email"
         android:textSize="16sp"
@@ -59,6 +58,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/container" />
 
+
+    <EditText
+        android:id="@+id/textThemHangBay"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="68dp"
+        android:autofillHints="email"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Hãng Bay"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColorHint="@color/input"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textThemMaMayBay" />
 
     <EditText
 
@@ -104,10 +122,11 @@
         android:id="@+id/radioGroupActive"
         android:layout_width="290dp"
         android:layout_height="97dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="484dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -118,10 +137,10 @@
             android:text="Kích Hoạt" />
 
         <RadioButton
-            android:layout_marginStart="20dp"
             android:id="@+id/radioNoActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="Không Kích Hoạt" />
     </RadioGroup>
 

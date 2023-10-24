@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class PlaneAddActivity extends AppCompatActivity {
     Button btnReturnListView,btnSave;
-    EditText txtHangBay,txtLoai,txtSucChua;
+    EditText txtHangBay,txtLoai,txtSucChua,txtMaMayBay;
     FirebaseFirestore firestore;
     RadioGroup radioGroupActive;
     @Override
@@ -37,7 +37,7 @@ public class PlaneAddActivity extends AppCompatActivity {
          txtHangBay = findViewById(R.id.textThemHangBay);
         txtLoai = findViewById(R.id.textThemLoai);
         txtSucChua = findViewById(R.id.textThemSucChua);
-
+        txtMaMayBay = findViewById(R.id.textThemMaMayBay);
         final boolean[] isActive = {false};
         radioGroupActive = findViewById(R.id.radioGroupActive);
         radioGroupActive.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -65,15 +65,14 @@ public class PlaneAddActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String textId = txtMaMayBay.getText().toString().trim();
                 String textHang = txtHangBay.getText().toString().trim();
                 String textLoai = txtLoai.getText().toString().trim();
                 String textSucChua = txtSucChua.getText().toString().trim();
-                uploadData(textHang,textLoai,textSucChua,isActive[0]);
+                uploadData(textId,textHang,textLoai,textSucChua,isActive[0]);
             }
 
-            private void uploadData(String textHang, String textLoai, String textSucChua, boolean b) {
-                String id = UUID.randomUUID().toString();
+            private void uploadData(String id,String textHang, String textLoai, String textSucChua, boolean b) {
                 Map<String, Object> doc = new HashMap<>();
                 doc.put("Id",id);
                 doc.put("brand",textHang);

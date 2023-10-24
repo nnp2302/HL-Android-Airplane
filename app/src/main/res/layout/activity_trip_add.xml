@@ -41,57 +41,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+
     <LinearLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.171">
 
+        <EditText
+            android:id="@+id/textThemNoiDi"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:hint="Nơi Đi"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/container" />
+
+
+        <EditText
+            android:id="@+id/textThemNoiDen"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="43dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:hint="Nơi Đến"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textThemNoiDi" />
     </LinearLayout>
-    <EditText
-        android:id="@+id/textThemNoiDi"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="15dp"
-        android:background="@drawable/selector_rounded_input_5"
-        android:ems="10"
-        android:hint="Nơi Đi"
-        android:textColorHint="@color/input"
-        android:autofillHints="email"
-        android:textSize="16sp"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/container" />
-
-
-    <EditText
-
-        android:id="@+id/textThemNoiDen"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:autofillHints="email"
-        android:background="@drawable/selector_rounded_input_5"
-        android:ems="10"
-        android:hint="Nơi Đến"
-        android:inputType="textEmailAddress"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="5dp"
-        android:textColorHint="@color/input"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textThemNoiDi" />
 
     <EditText
         android:id="@+id/textThemBatDau"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="424dp"
+        android:layout_marginBottom="492dp"
         android:background="@drawable/selector_rounded_input_5"
         android:drawableRight="@drawable/ic_calendar"
         android:ems="10"
@@ -103,14 +108,14 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/textThemKetThuc"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginBottom="420dp"
         android:autofillHints="email"
         android:background="@drawable/selector_rounded_input_5"
         android:drawableRight="@drawable/ic_calendar"
@@ -123,7 +128,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
@@ -168,10 +173,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="30dp"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,24 +192,23 @@
             android:layout_height="50dp"
             android:background="@drawable/selector_rounded_input_5"
             android:ems="10"
+            android:hint="SL Economy"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
             android:textColorHint="@color/input"
-            android:textSize="16sp"
-            android:hint="SL Economy"
-            />
+            android:textSize="16sp" />
 
         <EditText
-            android:layout_marginStart="43dp"
             android:id="@+id/textSoLuongBusiness"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_marginStart="43dp"
             android:background="@drawable/selector_rounded_input_5"
             android:ems="10"
+            android:hint="SL Business"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
             android:textColorHint="@color/input"
-            android:hint="SL Business"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -213,13 +218,23 @@
         android:layout_height="50dp"
         android:layout_marginTop="572dp"
         android:background="@drawable/shape_rounded_btn_5_0194f3"
-        android:text="Đăng ký"
+        android:text="Tạo Mới"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <Spinner
+        android:id="@+id/listPlane"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="212dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--    <Button-->
 <!--        android:id="@+id/backToList"-->

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,29 +64,11 @@ public class PlaneActivity extends AppCompatActivity {
             }
         });
     }
-//    private void deleteData(Plane plane) {
-//        String id = plane.getId();
-//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//        firestore.collection("Plane").document(id)
-//                .delete()
-//                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(PlaneActivity.this,"Xóa Thành Công",Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//
-//                    }
-//                });
-//    }
 
     private List<Plane> GetAllPlane() {
         List<Plane> plane = new ArrayList<>();
         firestore.collection("Plane").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 

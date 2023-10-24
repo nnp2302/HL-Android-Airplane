@@ -95,12 +95,6 @@ public class PlaneEditActivity extends AppCompatActivity {
     }
 
     private void UpdateData(String id, String textHang, String textLoai, String textSucChua, boolean b) {
-
-//        doc.put("Id",id);
-//        doc.put("brand",textHang);
-//        doc.put("type",textLoai);
-//        doc.put("capacity",Integer.parseInt(textSucChua));
-//        doc.put("active",b);
         firestore.collection("Plane")
                 .document(id)
                 .update("Id",id,"brand",textHang,
@@ -110,6 +104,7 @@ public class PlaneEditActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(PlaneEditActivity.this,"Cập nhật thành công!!",Toast.LENGTH_SHORT).show();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
