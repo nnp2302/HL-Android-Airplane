@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/transport_ing_background_noradius"
+        android:contentDescription="background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:background="@drawable/shape_rounded_container_top_20_fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Thêm Chuyến"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/textThemNoiDi"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Nơi Đi"
+        android:textColorHint="@color/input"
+        android:autofillHints="email"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container" />
+
+
+    <EditText
+
+        android:id="@+id/textThemNoiDen"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="email"
+        android:background="@drawable/selector_rounded_input_5"
+        android:ems="10"
+        android:hint="Nơi Đến"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColorHint="@color/input"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textThemNoiDi" />
+
+    <EditText
+        android:id="@+id/textThemBatDau"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="424dp"
+        android:background="@drawable/selector_rounded_input_5"
+        android:drawableRight="@drawable/ic_calendar"
+        android:ems="10"
+        android:hint="Ngày Bắt Đầu"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColorHint="@color/input"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/textThemKetThuc"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="360dp"
+        android:autofillHints="email"
+        android:background="@drawable/selector_rounded_input_5"
+        android:drawableRight="@drawable/ic_calendar"
+        android:ems="10"
+        android:hint="Ngày Kết Thúc"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColorHint="@color/input"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layoutGiaVe"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@+id/textThemKetThuc"
+        app:layout_constraintVertical_bias="0.074">
+
+        <EditText
+            android:id="@+id/textThemGiaEconomy"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:textSize="16sp"
+            android:hint="Giá Economy"
+            />
+
+        <EditText
+            android:layout_marginStart="43dp"
+            android:id="@+id/textThemGiaBusiness"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:hint="Giá Business"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@+id/layoutGiaVe"
+        app:layout_constraintVertical_bias="0.074">
+
+        <EditText
+            android:id="@+id/textSoLuongEconomy"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:textSize="16sp"
+            android:hint="SL Economy"
+            />
+
+        <EditText
+            android:layout_marginStart="43dp"
+            android:id="@+id/textSoLuongBusiness"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_rounded_input_5"
+            android:ems="10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColorHint="@color/input"
+            android:hint="SL Business"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitAddTrip"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="572dp"
+        android:background="@drawable/shape_rounded_btn_5_0194f3"
+        android:text="Đăng ký"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/backToList"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginBottom="48dp"-->
+<!--        android:background="@drawable/shape_rounded_btn_5_0194f3"-->
+<!--        android:text="Xem Danh Sách"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="16sp"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="@+id/container"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.491"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/submitAddPlane"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
