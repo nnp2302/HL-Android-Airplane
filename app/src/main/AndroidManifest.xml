@@ -14,6 +14,15 @@
     android:theme="@style/Theme.AirplaneAndroid.NoActionBar"
     tools:targetApi="31">
     <activity
+      android:name=".admin.DetailTripActivity"
+      android:exported="false" />
+    <activity
+      android:name=".admin.TripEditActivity"
+      android:exported="false" />
+    <activity
+      android:name=".admin.TripAddActivity"
+      android:exported="false" />
+    <activity
       android:name=".SearchActivity"
       android:exported="false" />
     <activity

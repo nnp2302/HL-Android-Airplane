@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -74,9 +75,11 @@ public class PlaneEditActivity extends AppCompatActivity {
                     if (selectedRadioButton.getId() == R.id.radioEditActive) {
                         isActive[0] = true;
                         Log.d("IsActive", "true");
+                        Toast.makeText(PlaneEditActivity.this,"Kích Hoạt",Toast.LENGTH_SHORT).show();
                     } else {
                         isActive[0] = false;
                         Log.d("IsActive", "false");
+                        Toast.makeText(PlaneEditActivity.this,"Không Kích Hoạt",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -88,19 +91,26 @@ public class PlaneEditActivity extends AppCompatActivity {
                 String textHang = textSuaHangBay.getText().toString().trim();
                 String textLoai = textSuaLoai.getText().toString().trim();
                 String textSucChua = textSuaSucChua.getText().toString().trim();
+                if(textHang.isEmpty() || textLoai.isEmpty() || textSucChua.isEmpty()){
+                    Toast.makeText(PlaneEditActivity.this,"Các Ô Không Được Phép Bỏ Trống",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!textSucChua.isEmpty() && !TextUtils.isDigitsOnly(textSucChua)){
+                    Toast.makeText(PlaneEditActivity.this,"Vui Lòng Nhập Chữ Số",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                int selectedRadioButtonId = radioGroupActive.getCheckedRadioButtonId();
 
+                if (selectedRadioButtonId == -1) {
+                    Toast.makeText(PlaneEditActivity.this, "Vui Lòng Chọn Trạng Thái", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 UpdateData(id,textHang,textLoai,textSucChua,isActive[0]);
             }
         });
     }
 
     private void UpdateData(String id, String textHang, String textLoai, String textSucChua, boolean b) {
-
-//        doc.put("Id",id);
-//        doc.put("brand",textHang);
-//        doc.put("type",textLoai);
-//        doc.put("capacity",Integer.parseInt(textSucChua));
-//        doc.put("active",b);
         firestore.collection("Plane")
                 .document(id)
                 .update("Id",id,"brand",textHang,
@@ -110,6 +120,7 @@ public class PlaneEditActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(PlaneEditActivity.this,"Cập nhật thành công!!",Toast.LENGTH_SHORT).show();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

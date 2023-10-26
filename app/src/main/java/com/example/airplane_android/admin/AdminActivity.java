@@ -13,13 +13,15 @@ import com.example.airplane_android.MainActivity;
 import com.example.airplane_android.R;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
-    CardView cardPlane;
+    CardView cardPlane,cardTrip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         cardPlane = findViewById(R.id.cardplane);
+        cardTrip = findViewById(R.id.cardtrip);
         cardPlane.setOnClickListener(this);
+        cardTrip.setOnClickListener(this);
     }
 
     @Override

@@ -1,10 +1,11 @@
-package com.example.airplane_android.admin.model.adapter;
+package com.example.airplane_android.admin.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +17,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.airplane_android.R;
+import com.example.airplane_android.admin.DetailTripActivity;
 import com.example.airplane_android.admin.PlaneEditActivity;
+import com.example.airplane_android.admin.TripEditActivity;
 import com.example.airplane_android.admin.model.Plane;
+import com.example.airplane_android.admin.model.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHolder> {
-    private List<Plane> mListPlane;
+public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
+    private List<Trip> mListTrip;
     private Context context;
 
-    public PlaneAdapter(List<Plane> mListPlane, Context context) {
-        this.mListPlane = mListPlane;
+    public TripAdapter(List<Trip> mListTrip, Context context) {
+        this.mListTrip = mListTrip;
         this.context = context;
     }
 
@@ -40,68 +47,68 @@ public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHol
     }
     @NonNull
     @Override
-    public PlaneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PlaneViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_plane,parent,false));
+    public TripViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new TripAdapter.TripViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_trip,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlaneViewHolder holder, int position) {
-        final Plane plane = mListPlane.get(position);
-        boolean isActive = plane.isActive();
-        ImageView iconCheckActive = holder.itemView.findViewById(R.id.iconCheckActive);
-        if(isActive == true){
-            iconCheckActive.setVisibility(View.VISIBLE);
-        }else {
-            iconCheckActive.setVisibility(View.GONE);
-        }
-        holder.textMaMayBay.setText(plane.getId());
-        holder.textTenHang.setText(plane.getBrand());
-        holder.textTenLoai.setText(plane.getType());
-        holder.textSucChua.setText(plane.getCapacity().toString());
+    public void onBindViewHolder(@NonNull TripViewHolder holder, int position) {
+        Trip trip = mListTrip.get(position);
+        holder.fromVH.setText(trip.getFrom());
+        holder.toVH.setText(trip.getTo());
+        holder.startDateVH.setText(trip.getStart());
+        holder.endDateVH.setText(trip.getEnd());
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                showOptionsDialog(plane);
-//                Toast.makeText(context, "Long Clicked", Toast.LENGTH_SHORT).show();
+                showOptionsDialog(trip);
                 return true;
             }
         });
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailTripActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("trip",trip);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
-    private void showOptionsDialog(Plane plane) {
+    private void showOptionsDialog(Trip trip) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setTitle("Options");
         builder.setItems(new CharSequence[]{"Sửa", "Xóa"}, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    Intent intent = new Intent(context, PlaneEditActivity.class);
+                    Intent intent = new Intent(context, TripEditActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("plane",plane);
+                    bundle.putSerializable("trip",trip);
                     intent.putExtras(bundle);
-
                     context.startActivity(intent);
-
                 } else if (which == 1) {
-                    deleteData(plane);
+                    deleteData(trip);
                 }
                 dialog.dismiss();
             }
         });
         builder.show();
     }
-    private void deleteData(Plane plane) {
-        String id = plane.getId();
+
+    private void deleteData(Trip trip) {
+        String id = trip.getId();
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("Plane").document(id)
+        firestore.collection("Trip").document(id)
                 .delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(context,"Xóa Thành Công",Toast.LENGTH_SHORT).show();
-                        mListPlane.remove(plane);
+                        mListTrip.remove(trip);
                         notifyDataSetChanged();
                     }
                 })
@@ -112,28 +119,28 @@ public class PlaneAdapter extends RecyclerView.Adapter<PlaneAdapter.PlaneViewHol
                     }
                 });
     }
+
     @Override
     public int getItemCount() {
-        if(mListPlane != null){
-            return mListPlane.size();
+        if(mListTrip != null){
+            return mListTrip.size();
         }
         return 0;
     }
 
-    public class PlaneViewHolder extends RecyclerView.ViewHolder{
+    public class TripViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView textTenHang,textMaMayBay,textTenLoai,textSucChua;
+        private TextView fromVH,toVH,startDateVH,endDateVH,priceEconomy,priceBusiness,economyTicket,businessTicket;
+
         private FloatingActionButton flButton;
-//        private TextView textTrangThai;
-        public PlaneViewHolder(@NonNull View itemView) {
+        public TripViewHolder(@NonNull View itemView) {
             super(itemView);
-            textTenHang = itemView.findViewById(R.id.textTenHang);
-            textTenLoai = itemView.findViewById(R.id.textTenLoai);
-            textSucChua = itemView.findViewById(R.id.textSucChua);
-            textMaMayBay = itemView.findViewById(R.id.textMaMayBay);
-            flButton=itemView.findViewById(R.id.floatingActionButtonPlane);
-
-//            textTrangThai = itemView.findViewById(R.id.textTrangThai);
+            fromVH = itemView.findViewById(R.id.textNoiDi);
+            toVH = itemView.findViewById(R.id.textNoiDen);
+            startDateVH = itemView.findViewById(R.id.textBatDau);
+            endDateVH = itemView.findViewById(R.id.textKetThuc);
+            flButton=itemView.findViewById(R.id.floatingActionButtonTrip);
         }
+
     }
 }
