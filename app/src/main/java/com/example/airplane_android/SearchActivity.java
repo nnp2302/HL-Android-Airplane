@@ -8,10 +8,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.airplane_android.adapters.TripAdapter;
 import com.example.airplane_android.admin.model.Trip;
+import com.example.airplane_android.models.UserTrip;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -21,12 +25,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class SearchActivity extends AppCompatActivity {
 
   Toolbar toolbar;
   ImageButton btnBack;
-  TextView txtToolbarTitle, txtToolbarSubTitle;
+  TextView txtToolbarTitle, txtToolbarSubTitle, txtNotFound;
+  ListView lstSearchView;
   ConstraintLayout mainHome;
 
   Intent getIntent;
@@ -42,6 +49,8 @@ public class SearchActivity extends AppCompatActivity {
     toolbar = findViewById(R.id.toolbar);
     txtToolbarTitle = findViewById(R.id.toolbarTitle);
     txtToolbarSubTitle = findViewById(R.id.toolbarSubTitle);
+    txtNotFound = findViewById(R.id.serach_not_found);
+    lstSearchView = findViewById(R.id.lstSearch);
     btnBack = findViewById(R.id.toolbarBack);
 
     setSupportActionBar(toolbar);
@@ -65,20 +74,27 @@ public class SearchActivity extends AppCompatActivity {
     FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     fireStore.collection("Trip").get()
         .addOnSuccessListener(res -> {
-          List<Trip> tripList = new ArrayList<>();
+          List<UserTrip> tripList = new ArrayList<>();
           for (QueryDocumentSnapshot snapshot : res) {
             String convertDateStr = dateFlight.replace("/", "-");
+
+            final String idSnapshot = snapshot.getData().get("Id").toString();
+            final String planeSnapshot = snapshot.getData().get("PlaneId").toString();
 
             final String fromSnapshot = snapshot.getData().get("From").toString();
             final String toSnapshot = snapshot.getData().get("To").toString();
             final String startDateSnapshot = snapshot.getData().get("Start").toString();
-            final String businessPriceSnapshot = snapshot.getData().get("BusinessPrice").toString();
-            final String businessTicketSnapshot = snapshot.getData().get("BusinessTicket").toString();
-            final String economyPriceSnapshot = snapshot.getData().get("EconomyPrice").toString();
-            final String economyTicketSnapshot = snapshot.getData().get("EconomyTicket").toString();
             final String endDateSnapshot = snapshot.getData().get("End").toString();
-            final String planeSnapshot = snapshot.getData().get("PlaneId").toString();
-            final String idSnapshot = snapshot.getData().get("Id").toString();
+
+            final String priceSnapshot;
+            if (typeChair.equals("Economy")) priceSnapshot = snapshot.getData().get("EconomyPrice").toString();
+            else priceSnapshot = snapshot.getData().get("BusinessPrice").toString();
+
+            final String amountSnapshot;
+            if (typeChair.equals("Economy")) amountSnapshot = snapshot.getData().get("EconomyTicket").toString();
+            else amountSnapshot = snapshot.getData().get("BusinessTicket").toString();
+
+            String estimateTime = calculateEstimateTime(startDateSnapshot, endDateSnapshot);
 
             final String[] startDateSnapshotSplit = startDateSnapshot.split(" ");
             final String[] endDateSnapshotSplit = endDateSnapshot.split(" ");
@@ -88,20 +104,27 @@ public class SearchActivity extends AppCompatActivity {
 
             if (fromSnapshot.toLowerCase().contains(fromDes.toLowerCase())
                 && toSnapshot.toLowerCase().contains(toDes.toLowerCase())
-                && convertDate.getTime() == startDateSnapshotConvert.getTime())
-              tripList.add(new Trip(
+                && convertDate.getTime() == startDateSnapshotConvert.getTime()
+                && (Integer.parseInt(amountSnapshot) - Integer.parseInt(amount)) > 0)
+              tripList.add(new UserTrip(
+                  idSnapshot,
                   fromSnapshot,
                   toSnapshot,
-                  businessPriceSnapshot,
-                  economyPriceSnapshot,
-                  businessTicketSnapshot,
-                  economyTicketSnapshot,
-                  startDateSnapshotConvert,
-                  endDateSnapshotConvert,
-                  new Date(),
+                  Integer.parseInt(priceSnapshot),
+                  startDateSnapshot,
+                  endDateSnapshot,
+                  estimateTime,
                   planeSnapshot
               ));
           }
+
+
+          if (tripList.size() > 0) {
+            txtNotFound.setVisibility(View.INVISIBLE);
+            TripAdapter adapter = new TripAdapter(this, tripList);
+            lstSearchView.setAdapter(adapter);
+          } else
+            lstSearchView.setVisibility(View.INVISIBLE);
         })
         .addOnFailureListener(e -> {
           Log.e("Load FireStore data", "Failed to query trip FireStore data, log: " + e);
@@ -119,5 +142,31 @@ public class SearchActivity extends AppCompatActivity {
     } catch (ParseException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private String calculateEstimateTime(String startTime, String endTime) {
+    final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH);
+
+    Date convertTimeStart = null, convertTimeEnd = null;
+    try {
+      convertTimeStart = dateFormat.parse(startTime);
+      convertTimeEnd = dateFormat.parse(endTime);
+    } catch (Exception e) {
+      Log.e("Convert date time", "Failed to convert string time to date, log: " + e);
+    }
+
+    long estimateTime = convertTimeEnd.getTime() - convertTimeStart.getTime();
+    long hours = TimeUnit.MILLISECONDS.toHours(estimateTime);
+    long minutes = TimeUnit.MILLISECONDS.toMinutes(estimateTime - TimeUnit.HOURS.toMillis(hours));
+    long seconds = TimeUnit.MILLISECONDS.toSeconds(estimateTime - TimeUnit.HOURS.toMillis(hours) - TimeUnit.MINUTES.toMillis(minutes));
+
+    String formattedTime = "";
+    if (hours > 0)
+      formattedTime = hours + "h" + minutes + "m";
+    else if (minutes > 0)
+      formattedTime = minutes + "m" + seconds + "s";
+    else
+      formattedTime = seconds + "s";
+    return formattedTime;
   }
 }

@@ -24,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -182,13 +184,13 @@ public class MainHomeFragment extends Fragment {
 
   private boolean checkIsPreviousDate(String dateValue) {
     @SuppressLint("SimpleDateFormat")
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     try {
-      Date currentDate = new Date();
-      Date selectedDate = dateFormat.parse(dateValue);
+      LocalDate currentDate = LocalDate.now();
+      LocalDate selectedDate = LocalDate.parse(dateValue, dateFormat);
 
-      return selectedDate.getTime() < currentDate.getTime();
+        return selectedDate.isBefore(currentDate);
     } catch (Exception e) {
       Log.e("Parsing to date", "Failed to parsing string date to type date, log: " + e);
       return false;
