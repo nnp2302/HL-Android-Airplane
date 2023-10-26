@@ -24,11 +24,21 @@ public class ValidateUtils {
     }
 
     public static boolean checkBirthDay(String birth) {
-        String[] birthSplit = birth.split("/");
-        int birthOfYear = Integer.parseInt(birthSplit[2]);
-        Calendar calendar = Calendar.getInstance();
+        final String[] birthSplit = birth.split("/");
+        final int birthOfYear = Integer.parseInt(birthSplit[2]);
+        final Calendar calendar = Calendar.getInstance();
         int[] currentYear = {calendar.get(Calendar.YEAR)};
 
         return (currentYear[0] - birthOfYear) < 16;
+    }
+
+    public static boolean checkIdCard(String id) {
+        final String regex = "^(0\\d{11}|[12389]\\d{8})$\n";
+        return Pattern.matches(regex, id);
+    }
+
+    public static boolean checkContainsNumeric(String text) {
+        final String regex = ".*\\d+.*";
+        return Pattern.matches(regex, text);
     }
 }

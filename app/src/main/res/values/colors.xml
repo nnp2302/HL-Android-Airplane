@@ -16,4 +16,5 @@
     <color name="text_color_description">#616161</color>
     <color name="primary_80">#CC0194F3</color>
     <color name="input">#CCCCCC</color>
+    <color name="highlight">#FF5E03</color>
 </resources>

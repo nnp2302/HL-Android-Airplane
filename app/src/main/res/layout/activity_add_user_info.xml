@@ -1,174 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/primary"
+  tools:context=".AddUserInfoActivity">
+
+  <ImageView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary"
-    tools:context=".AddUserInfoActivity">
+    android:layout_height="wrap_content"
+    android:contentDescription="background"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/img_plane_background" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_plane_background" />
+  <Button
+    android:id="@+id/skip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:layout_marginEnd="25dp"
+    android:background="@android:color/transparent"
+    android:text="Bỏ qua"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@android:color/transparent"
-        android:text="Bỏ qua"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+  <View
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:background="@drawable/shape_rounded_container_top_20_fff"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:background="@drawable/shape_rounded_container_top_20_fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="50dp"
+    android:text="Thông tin"
+    android:textColor="@color/white"
+    android:textSize="35sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toTopOf="@+id/container"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:text="Thông tin"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+  <de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/avatar"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginTop="25dp"
+    android:src="@drawable/avatar"
+    app:civ_border_color="@color/input"
+    app:civ_border_width="2dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/container" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatar"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/container"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/input" />
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/usernameContainer"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="25dp"
+    android:hint="@string/username"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/avatar"
+    app:startIconDrawable="@drawable/ic_user"
+    app:startIconTint="@color/input">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usernameContainer"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="@string/username"
-        android:layout_marginTop="25dp"
-        app:startIconDrawable="@drawable/ic_user"
-        app:startIconTint="@color/input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/usernameInput"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="textPersonName"
+      android:paddingHorizontal="15dp"
+      android:paddingVertical="5dp"
+      android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:textSize="16sp"
-            android:inputType="textPersonName" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/genderContainer"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="25dp"
+    android:hint="@string/gender"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/usernameContainer"
+    app:startIconDrawable="@drawable/ic_gender"
+    app:startIconTint="@color/input">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderContainer"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="@string/gender"
-        android:layout_marginTop="25dp"
-        app:startIconDrawable="@drawable/ic_gender"
-        app:startIconTint="@color/input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <AutoCompleteTextView
+      android:id="@+id/genderInput"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:inputType="none"
+      android:paddingHorizontal="15dp"
+      android:paddingVertical="5dp"
+      android:textSize="16sp"
+      tools:ignore="LabelFor" />
 
-        <AutoCompleteTextView
-            android:id="@+id/genderInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:textSize="16sp"
-            android:inputType="none"
-            tools:ignore="LabelFor" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/phoneContainer"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="25dp"
+    android:hint="@string/phone"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/genderContainer"
+    app:startIconDrawable="@drawable/ic_phone"
+    app:startIconTint="@color/input">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phoneContainer"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="@string/phone"
-        android:layout_marginTop="25dp"
-        app:startIconDrawable="@drawable/ic_phone"
-        app:startIconTint="@color/input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/phoneInput"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="phone"
+      android:paddingHorizontal="15dp"
+      android:paddingVertical="5dp"
+      android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:textSize="16sp"
-            android:inputType="phone" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/birthContainer"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="25dp"
+    android:hint="@string/birthday"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/phoneContainer"
+    app:startIconDrawable="@drawable/ic_calendar"
+    app:startIconTint="@color/input">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/birthContainer"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="@string/birthday"
-        android:layout_marginTop="25dp"
-        app:startIconDrawable="@drawable/ic_calendar"
-        app:startIconTint="@color/input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/birthInput"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:clickable="false"
+      android:focusable="false"
+      android:inputType="date"
+      android:paddingHorizontal="15dp"
+      android:paddingVertical="5dp"
+      android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/birthInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:textSize="16sp"
-            android:clickable="false"
-            android:focusable="false"
-            android:inputType="date" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/txt_continue"
-        android:textSize="16sp"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthContainer" />
+  <Button
+    android:id="@+id/submit"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="50dp"
+    android:text="@string/txt_continue"
+    android:textAllCaps="false"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/birthContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

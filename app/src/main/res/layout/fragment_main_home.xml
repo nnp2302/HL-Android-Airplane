@@ -1,19 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    tools:context=".fragment.MainHomeFragment">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/mainHome"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/inactive"
+  tools:context=".fragment.MainHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home page"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_gravity="center"/>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+      android:id="@+id/container"
+      android:layout_width="match_parent"
+      android:layout_height="250dp"
+      android:background="@color/primary"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/form"
+      android:layout_width="350dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="80dp"
+      android:background="@color/white"
+      app:cardCornerRadius="10dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/formConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="15dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/fromDesContainer"
+          android:layout_width="300dp"
+          android:layout_height="60dp"
+          android:hint="Từ"
+          app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+          app:layout_constraintStart_toStartOf="@+id/formConstraint"
+          app:layout_constraintTop_toTopOf="@+id/formConstraint"
+          app:startIconDrawable="@drawable/ic_depart_plane">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fromDesInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/switchFromDes"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginEnd="15dp"
+          android:src="@drawable/ic_switch_ver"
+          app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+          app:layout_constraintTop_toBottomOf="@+id/fromDesContainer" />
+
+        <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/toDesContainer"
+          android:layout_width="300dp"
+          android:layout_height="60dp"
+          android:layout_marginTop="40dp"
+          android:hint="Đến"
+          app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+          app:layout_constraintStart_toStartOf="@+id/formConstraint"
+          app:layout_constraintTop_toBottomOf="@+id/fromDesContainer"
+          app:startIconDrawable="@drawable/ic_arrival_plane">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/toDesInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/dateFlightContainer"
+          android:layout_width="300dp"
+          android:layout_height="60dp"
+          android:layout_marginTop="25dp"
+          android:hint="Ngày đi"
+          app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+          app:layout_constraintStart_toStartOf="@+id/formConstraint"
+          app:layout_constraintTop_toBottomOf="@+id/toDesContainer"
+          app:startIconDrawable="@drawable/ic_calendar">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateFlightInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="date"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:clickable="false"
+            android:focusable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+          android:id="@+id/utilContainer"
+          android:layout_width="300dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="25dp"
+          android:gravity=""
+          android:orientation="horizontal"
+          android:weightSum="10"
+          app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+          app:layout_constraintStart_toStartOf="@+id/formConstraint"
+          app:layout_constraintTop_toBottomOf="@+id/dateFlightContainer">
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="4.6"
+            android:hint="Số lượng"
+            app:startIconDrawable="@drawable/ic_user">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/amountPassengerInput"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:inputType="number"
+              android:background="@android:color/transparent"
+              android:textColor="@color/black"
+              android:textSize="14sp" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.8" />
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="4.6"
+            android:hint="Hạng ghế"
+            app:startIconDrawable="@drawable/ic_seat">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/typeChairInput"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:inputType="text"
+              android:background="@android:color/transparent"
+              android:textColor="@color/black"
+              android:textSize="14sp"
+              android:clickable="false"
+              android:focusable="false" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+          android:id="@+id/submit"
+          android:layout_width="300dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:backgroundTint="@color/highlight"
+          android:text="Tìm kiếm"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/utilContainer" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

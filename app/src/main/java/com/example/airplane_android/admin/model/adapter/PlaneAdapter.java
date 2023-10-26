@@ -1,4 +1,4 @@
-package com.example.airplane_android.admin.adapter;
+package com.example.airplane_android.admin.model.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.airplane_android.R;
-import com.example.airplane_android.admin.PlaneActivity;
-import com.example.airplane_android.admin.PlaneAddActivity;
 import com.example.airplane_android.admin.PlaneEditActivity;
 import com.example.airplane_android.admin.model.Plane;
 import com.google.android.gms.tasks.OnCompleteListener;

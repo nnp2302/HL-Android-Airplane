@@ -9,65 +9,72 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.airplane_android.utils.ValidateUtils;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
 public class ForgotPassActivity extends AppCompatActivity {
 
-    TextInputEditText emailInput;
-    ImageButton btnBack;
-    Button btnSubmit;
+  TextInputEditText emailInput;
+  ImageButton btnBack;
+  Button btnSubmit;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_pass);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_forgot_pass);
 
-        emailInput = findViewById(R.id.emailInput);
-        btnBack = findViewById(R.id.back);
-        btnSubmit = findViewById(R.id.submit);
-    }
+    emailInput = findViewById(R.id.emailInput);
+    btnBack = findViewById(R.id.back);
+    btnSubmit = findViewById(R.id.submit);
+  }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+  @Override
+  protected void onStart() {
+    super.onStart();
 
-        btnBack.setOnClickListener(v -> finish());
+    btnBack.setOnClickListener(v -> finish());
 
-        btnSubmit.setOnClickListener(v -> {
-            String emailValue = Objects.requireNonNull(emailInput.getText()).toString();
+    btnSubmit.setOnClickListener(v -> {
+      final String emailValue = Objects.requireNonNull(emailInput.getText()).toString();
 
-            if (checkIsEmpty(emailValue)) {
-                Toast.makeText(this, "Vui lòng điền email", Toast.LENGTH_SHORT).show();
-                return;
-            }
+      final String validateBasicRes = validateBasicField(emailValue);
+      if (!validateBasicRes.equals("")) {
+        Toast.makeText(this, validateBasicRes, Toast.LENGTH_SHORT).show();
+        return;
+      }
 
-            if (!ValidateUtils.checkEmail(emailValue)) {
-                Toast.makeText(this, "Vui lòng nhập đúng email", Toast.LENGTH_SHORT).show();
-                return;
-            }
+      final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+      fireStore.collection("Users").whereEqualTo("email", emailValue).get().addOnCompleteListener(t -> {
+        if (handleCheckAuthExist(t)) {
+          FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+          firebaseAuth.sendPasswordResetEmail(emailValue).addOnCompleteListener(rt -> handleResetAuth());
+        } else Toast.makeText(this, "Email không tồn tại", Toast.LENGTH_SHORT).show();
+      });
+    });
+  }
 
-            FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
-            fireStore.collection("Users").whereEqualTo("email", emailValue).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                    firebaseAuth.sendPasswordResetEmail(emailValue)
-                        .addOnCompleteListener(resetTask -> {
-                            Toast.makeText(this, "Vui lòng kiểm tra email để được reset", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(this, LoginActivity.class);
-                            startActivity(intent);
-                        });
-                } else {
-                    Toast.makeText(this, "Email không tồn tại", Toast.LENGTH_SHORT).show();
-                }
-            });
-        });
-    }
+  private boolean checkIsEmpty(String emailValue) {
+    return emailValue.equals("");
+  }
 
-    private boolean checkIsEmpty(String emailValue) {
-        return emailValue.equals("");
-    }
+  private String validateBasicField(String emailValue) {
+    if (checkIsEmpty(emailValue)) return "Vui lòng điền email";
+    if (!ValidateUtils.checkEmail(emailValue)) return "Vui lòng nhập đúng định dạng email";
+
+    return "";
+  }
+
+  private boolean handleCheckAuthExist(Task<QuerySnapshot> t) {
+    return t.isSuccessful() && !t.getResult().isEmpty();
+  }
+
+  private void handleResetAuth() {
+    Toast.makeText(this, "Vui lòng kiểm tra email để được reset", Toast.LENGTH_SHORT).show();
+    startActivity(new Intent(this, LoginActivity.class));
+  }
 }

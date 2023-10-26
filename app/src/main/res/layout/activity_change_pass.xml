@@ -5,7 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/primary"
-  tools:context=".RegisterActivity">
+  tools:context=".ChangePassActivity">
 
   <ImageView
     android:layout_width="match_parent"
@@ -41,7 +41,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="50dp"
-    android:text="@string/sign_up"
+    android:text="@string/change_pass_title"
     android:textColor="@color/white"
     android:textSize="35sp"
     android:textStyle="bold"
@@ -50,45 +50,21 @@
     app:layout_constraintStart_toStartOf="parent" />
 
   <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/emailContainer"
+    android:id="@+id/oldPassContainer"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="350dp"
     android:layout_height="50dp"
     android:layout_marginTop="40dp"
-    android:hint="@string/email"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/container"
-    app:startIconDrawable="@drawable/ic_email"
-    app:startIconTint="@color/input">
-
-    <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/emailInput"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:inputType="textEmailAddress"
-      android:paddingHorizontal="15dp"
-      android:paddingVertical="5dp"
-      android:textSize="16sp" />
-
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/passContainer"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-    android:layout_width="350dp"
-    android:layout_height="50dp"
-    android:layout_marginTop="25dp"
-    android:hint="@string/password"
+    android:hint="@string/old_pass"
     app:endIconMode="password_toggle"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/emailContainer"
-    app:startIconDrawable="@drawable/ic_email"
+    app:layout_constraintTop_toTopOf="@+id/container"
+    app:startIconDrawable="@drawable/ic_password"
     app:startIconTint="@color/input">
 
     <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/passInput"
+      android:id="@+id/oldPassInput"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textPassword"
@@ -99,21 +75,46 @@
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/rePassContainer"
+    android:id="@+id/newPassContainer"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="350dp"
     android:layout_height="50dp"
     android:layout_marginTop="25dp"
-    android:hint="@string/re_password"
+    android:hint="@string/new_pass"
     app:endIconMode="password_toggle"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/passContainer"
-    app:startIconDrawable="@drawable/ic_email"
+    app:layout_constraintTop_toBottomOf="@+id/oldPassContainer"
+    app:startIconDrawable="@drawable/ic_password"
     app:startIconTint="@color/input">
 
     <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/rePassInput"
+      android:id="@+id/newPassInput"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="textPassword"
+      android:paddingHorizontal="15dp"
+      android:paddingVertical="5dp"
+      android:textSize="16sp" />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/newRePassContainer"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="350dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="25dp"
+    android:hint="@string/re_new_pass"
+    app:endIconMode="password_toggle"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/newPassContainer"
+    app:startIconDrawable="@drawable/ic_password"
+    app:startIconTint="@color/input">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/newRePassInput"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textPassword"
@@ -128,24 +129,12 @@
     android:layout_width="350dp"
     android:layout_height="50dp"
     android:layout_marginTop="50dp"
-    android:text="@string/sign_up"
+    android:text="@string/change_pass_title"
     android:textAllCaps="false"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/rePassContainer" />
+    app:layout_constraintTop_toBottomOf="@+id/newRePassContainer" />
 
-  <TextView
-    android:id="@+id/loginLink"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="30dp"
-    android:text="@string/has_account"
-    android:textColor="@color/input"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
