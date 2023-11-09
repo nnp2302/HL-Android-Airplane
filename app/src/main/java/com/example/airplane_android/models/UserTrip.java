@@ -1,6 +1,18 @@
 package com.example.airplane_android.models;
 
-public class UserTrip {
+import android.util.Log;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+public class UserTrip implements Serializable {
   private String Id;
   private String From;
   private String To;
@@ -11,6 +23,7 @@ public class UserTrip {
   private String PlaneId;
 
   public UserTrip() {}
+
 
   public UserTrip(String id, String from, String to, int price, String start, String end, String estimateTime, String idPlane) {
     this.Id = id;
@@ -82,4 +95,68 @@ public class UserTrip {
   public void setPlaneId(String planeId) {
     this.PlaneId = planeId;
   }
+
+
+  public static UserTrip fromDocument(DocumentSnapshot document) {
+    if (document == null || !document.exists()) {
+      return null;
+    }
+
+    String id = document.getString("Id");
+    String from = document.getString("From");
+    String to = document.getString("To");
+    String start = document.getString("Start");
+    String end = document.getString("End");
+    String estimateTime = calculateEstimateTime(start,end);
+    String planeId = document.getString("PlaneId");
+
+    UserTrip userTrip = new UserTrip();
+    userTrip.setId(id);
+    userTrip.setFrom(from);
+    userTrip.setTo(to);
+    userTrip.setStart(start);
+    userTrip.setEnd(end);
+    userTrip.setEstimateTime(estimateTime);
+    userTrip.setPlaneId(planeId);
+
+    return userTrip;
+  }
+  public Map<String, Object> toMap() {
+    Map<String, Object> map = new HashMap<>();
+    map.put("Id", Id);
+    map.put("From", From);
+    map.put("To", To);
+    map.put("Price", Price);
+    map.put("Start", Start);
+    map.put("End", End);
+    map.put("EstimateTime", EstimateTime);
+    map.put("PlaneId", PlaneId);
+    return map;
+  }
+  private static String calculateEstimateTime(String startTime, String endTime) {
+    final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH);
+
+    Date convertTimeStart = null, convertTimeEnd = null;
+    try {
+      convertTimeStart = dateFormat.parse(startTime);
+      convertTimeEnd = dateFormat.parse(endTime);
+    } catch (Exception e) {
+      Log.e("Convert date time", "Failed to convert string time to date, log: " + e);
+    }
+
+    long estimateTime = convertTimeEnd.getTime() - convertTimeStart.getTime();
+    long hours = TimeUnit.MILLISECONDS.toHours(estimateTime);
+    long minutes = TimeUnit.MILLISECONDS.toMinutes(estimateTime - TimeUnit.HOURS.toMillis(hours));
+    long seconds = TimeUnit.MILLISECONDS.toSeconds(estimateTime - TimeUnit.HOURS.toMillis(hours) - TimeUnit.MINUTES.toMillis(minutes));
+
+    String formattedTime = "";
+    if (hours > 0)
+      formattedTime = hours + "h" + minutes + "m";
+    else if (minutes > 0)
+      formattedTime = minutes + "m" + seconds + "s";
+    else
+      formattedTime = seconds + "s";
+    return formattedTime;
+  }
+
 }

@@ -64,6 +64,9 @@
       android:name=".MainActivity"
       android:exported="false" />
     <activity
+        android:name=".BookingActivity"
+        android:exported="false" />
+    <activity
       android:name=".InitialPageActivity"
       android:exported="true">
       <intent-filter>
