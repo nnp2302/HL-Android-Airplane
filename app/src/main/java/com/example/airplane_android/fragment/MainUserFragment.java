@@ -1,7 +1,6 @@
 package com.example.airplane_android.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.airplane_android.BookingHistoryActivity;
 import com.example.airplane_android.ChangePassActivity;
 import com.example.airplane_android.LoginActivity;
 import com.example.airplane_android.R;
@@ -83,7 +83,7 @@ public class MainUserFragment extends Fragment {
   TextView txtNoLogin, txtHasLogin;
   Button btnNoLoginLink;
   CircleImageView avatarHasLogin;
-  LinearLayout hasLoginContainer, userBtn, changePassBtn, logoutBtn;
+  LinearLayout hasLoginContainer, userBtn, changePassBtn, logoutBtn,ticketListBtn;
   FirebaseAuth firebaseAuth;
 
   @SuppressLint("SetTextI18n")
@@ -101,7 +101,7 @@ public class MainUserFragment extends Fragment {
     userBtn = requireView().findViewById(R.id.userSetting);
     changePassBtn = requireView().findViewById(R.id.changePassSetting);
     logoutBtn = requireView().findViewById(R.id.logoutSetting);
-
+    ticketListBtn = requireView().findViewById(R.id.history_ticket_list);
     firebaseAuth = FirebaseAuth.getInstance();
 
     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -114,10 +114,11 @@ public class MainUserFragment extends Fragment {
       txtHasLogin.setVisibility(View.INVISIBLE);
       userBtn.setVisibility(View.INVISIBLE);
       logoutBtn.setVisibility(View.INVISIBLE);
+      ticketListBtn.setVisibility(View.INVISIBLE);
     } else {
       txtNoLogin.setVisibility(View.INVISIBLE);
       btnNoLoginLink.setVisibility(View.INVISIBLE);
-
+      ticketListBtn.setVisibility(View.VISIBLE);
       hasLoginContainer.setVisibility(View.VISIBLE);
       avatarHasLogin.setVisibility(View.VISIBLE);
       txtHasLogin.setVisibility(View.VISIBLE);
@@ -137,6 +138,8 @@ public class MainUserFragment extends Fragment {
     userBtn.setOnClickListener(v -> startActivity(new Intent(getActivity(), UpdateUserInfoActivity.class)));
 
     changePassBtn.setOnClickListener(v -> startActivity(new Intent(getActivity(), ChangePassActivity.class)));
+
+    ticketListBtn.setOnClickListener( v-> startActivity(new Intent(getActivity(), BookingHistoryActivity.class)));
 
     logoutBtn.setOnClickListener(v -> {
       MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(getContext());

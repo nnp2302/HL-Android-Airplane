@@ -15,9 +15,11 @@ import android.view.View;
 import com.example.airplane_android.R;
 import com.example.airplane_android.admin.model.adapter.PlaneAdapter;
 import com.example.airplane_android.admin.model.Plane;
+import com.example.airplane_android.models.TicketModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -29,7 +31,6 @@ public class PlaneActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     private RecyclerView rcvPlaneView;
     private PlaneAdapter planeAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,6 @@ public class PlaneActivity extends AppCompatActivity {
         rcvPlaneView = findViewById(R.id.idPlaneItem);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvPlaneView.setLayoutManager(linearLayoutManager);
-
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvPlaneView.addItemDecoration(itemDecoration);
 
