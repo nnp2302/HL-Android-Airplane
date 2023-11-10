@@ -23,6 +23,6 @@ public class InitialPageActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
             Intent intent = new Intent(InitialPageActivity.this, MainActivity.class);
             startActivity(intent);
-        }, 3000);
+        }, 1500);
     }
 }

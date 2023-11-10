@@ -146,13 +146,17 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             resRawData.put("idCard", getIdCard);
             resRawData.put("photoPath", getPhotoFilePath);
 
-            String validateRes = validateDataField(rawData, resRawData);
-            if (!validateRes.equals("")) {
-              Toast.makeText(this, validateRes, Toast.LENGTH_SHORT).show();
-              return;
+//            String validateRes = validateDataField(rawData, resRawData);
+//            if (!validateRes.equals("")) {
+//              Toast.makeText(this, validateRes, Toast.LENGTH_SHORT).show();
+//              return;
+//            }
+            try {
+                if (!getEmail.equals(emailValue)) currentUser.updateEmail(emailValue);
+            }catch(Exception e){
+
             }
 
-            if (!getEmail.equals(emailValue)) currentUser.updateEmail(emailValue);
 
             if (imgUri != null) {
               final StorageReference storageRef = firebaseStorage.getReference(getPhotoFilePath);
