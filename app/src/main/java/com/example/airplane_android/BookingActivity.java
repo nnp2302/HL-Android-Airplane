@@ -3,6 +3,8 @@ package com.example.airplane_android;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +23,19 @@ import com.example.airplane_android.models.UserTrip;
 import com.example.airplane_android.utils.TicketConstants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BookingActivity extends AppCompatActivity {
@@ -37,7 +47,9 @@ public class BookingActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     FirebaseAuth auth;
     Integer bPrice,ePrice;
-
+    EditText fullname;
+    TextInputEditText dob;
+    ImageView backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +64,9 @@ public class BookingActivity extends AppCompatActivity {
         submit = findViewById(R.id.booking_submit_button);
         isBusiness = findViewById(R.id.booking_is_business);
         qty = findViewById(R.id.booking_quantity);
+        fullname = findViewById(R.id.booking_fullname);
+        dob  = findViewById(R.id.booking_dob);
+        backBtn = findViewById(R.id.booking_back_btn);
         //Khoi tao firebase
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -81,7 +96,20 @@ public class BookingActivity extends AppCompatActivity {
                 }
             }
         });
-
+        backBtn.setOnClickListener(v -> finish());
+        dob.setOnClickListener(v -> {
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Chọn ngày")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .setTextInputFormat(new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH))
+                    .build();
+            datePicker.show(getSupportFragmentManager(), "birthCalendar");
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                Date selectedDate = new Date(selection);
+                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                dob.setText(formatDate.format(selectedDate));
+            });
+        });
         //Xử lý các sự kiện
             //Sự kiện thay đổi số lượng vé
         qty.addTextChangedListener(new TextWatcher() {
@@ -134,16 +162,22 @@ public class BookingActivity extends AppCompatActivity {
                 Map<String,Object> data = new HashMap<>();
                 data.put("isBusiness",isBusiness.isChecked());
                 data.putAll(userTrip.toMap());
-                data.put("quantity",qty.getText().toString());
+                int quantity = Integer.parseInt(qty.getText().toString());
+                data.put("quantity", quantity);
                 data.put("purchaseStatus",false);
                 data.put("ticketStatus", TicketConstants.ACTIVE);
                 data.put("isCheckIn",false);
+                int priceValue =Integer.parseInt(price.getText().toString());
+                data.put("Price",priceValue);
+                data.put("fullname",fullname.getText().toString());
+                data.put("dob",dob.getText().toString().replace("/","-"));
                 DocumentReference reference = firestore.collection("Users").document(uid+"/tickets/"+System.currentTimeMillis());
                 reference.set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isComplete()){
-                            Toast.makeText(BookingActivity.this,"Đặt vé thành công",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(BookingActivity.this, BookingHistoryActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });

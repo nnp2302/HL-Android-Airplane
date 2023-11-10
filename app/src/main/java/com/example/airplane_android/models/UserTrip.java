@@ -126,7 +126,6 @@ public class UserTrip implements Serializable {
     map.put("Id", Id);
     map.put("From", From);
     map.put("To", To);
-    map.put("Price", Price);
     map.put("Start", Start);
     map.put("End", End);
     map.put("EstimateTime", EstimateTime);

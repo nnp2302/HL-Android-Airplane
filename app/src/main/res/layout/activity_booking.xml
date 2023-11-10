@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/booking_back_btn"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
@@ -137,7 +137,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="379dp"
             android:orientation="vertical">
 
             <TextView
@@ -213,6 +213,76 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Họ và tên" />
+
+                    <EditText
+                        android:id="@+id/booking_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Nguyễn Văn A"
+                        android:inputType="text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ngày sinh" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/booking_dob_container"
+                        android:layout_width="300dp"
+                        android:layout_height="60dp"
+                        android:hint="Ngày sinh"
+                        app:layout_constraintEnd_toEndOf="@+id/formConstraint"
+                        app:layout_constraintStart_toStartOf="@+id/formConstraint"
+                        app:layout_constraintTop_toBottomOf="@+id/toDesContainer"
+                        app:startIconDrawable="@drawable/ic_calendar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/booking_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="date"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:clickable="false"
+                            android:focusable="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
             <Button
@@ -224,6 +294,7 @@
                 android:text="Đặt vé" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

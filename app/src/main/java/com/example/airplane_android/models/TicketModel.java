@@ -22,7 +22,7 @@ public class TicketModel {
     private String fullname;
     private String identityId;
     private String address;
-
+    private String dob;
     private String ticketCode;
     public TicketModel() {
         // Required empty public constructor for Firebase
@@ -47,7 +47,7 @@ public class TicketModel {
         this.identityId = identityId;
         this.address = address;
     }
-    public static TicketModel fromDocument(QueryDocumentSnapshot document) {
+    public static TicketModel fromDocument(DocumentSnapshot document) {
         if (document == null || !document.exists()) {
             return null;
         }
@@ -59,11 +59,12 @@ public class TicketModel {
         boolean isBusiness = document.getBoolean("isBusiness");
         boolean isCheckIn = document.getBoolean("isCheckIn");
         boolean purchaseStatus = document.getBoolean("purchaseStatus");
-        int quantity = Integer.parseInt(document.getString("quantity"));
+        int quantity = document.getLong("quantity").intValue();
         String ticketStatus = document.getString("ticketStatus");
         String estimateTime = document.getString("EstimateTime");
         double price = document.getDouble("Price");
         String fullname = document.getString("fullname");
+        String dob = document.getString("dob");
         String identityId = document.getString("identityId");
         String address = document.getString("address");
 
@@ -83,27 +84,28 @@ public class TicketModel {
         ticketModel.setFullname(fullname);
         ticketModel.setIdentityId(identityId);
         ticketModel.setAddress(address);
-
+        ticketModel.setDob(dob);
         return ticketModel;
     }
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("planeId", planeId);
-        map.put("from", from);
-        map.put("to", to);
-        map.put("start", start);
-        map.put("end", end);
+        map.put("PlaneId", planeId);
+        map.put("From", from);
+        map.put("To", to);
+        map.put("Start", start);
+        map.put("End", end);
         map.put("isBusiness", isBusiness);
         map.put("isCheckIn", isCheckIn);
         map.put("purchaseStatus", purchaseStatus);
         map.put("quantity", quantity);
         map.put("ticketStatus", ticketStatus);
-        map.put("estimateTime", estimateTime);
-        map.put("price", price);
+        map.put("EstimateTime", estimateTime);
+        map.put("Price", price);
         map.put("fullname", fullname);
         map.put("identityId", identityId);
         map.put("address", address);
+        map.put("dob",dob);
         return map;
     }
     public String getPlaneId() {
@@ -231,5 +233,14 @@ public class TicketModel {
 
     public void setTicketCode(String ticketCode) {
         this.ticketCode = ticketCode;
+    }
+
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 }
