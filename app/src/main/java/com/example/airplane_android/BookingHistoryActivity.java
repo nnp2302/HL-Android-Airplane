@@ -53,17 +53,21 @@ public class BookingHistoryActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            TicketModel ticket = TicketModel.fromDocument(document);
-                            ticket.setTicketCode(document.getId());
-                            ticketModelList.add(ticket);
+                        QuerySnapshot data = task.getResult();
+                        if(data!=null){
+                            for (QueryDocumentSnapshot document : data) {
+                                TicketModel ticket = TicketModel.fromDocument(document);
+                                ticket.setTicketCode(document.getId());
+                                ticketModelList.add(ticket);
+                            }
+
+                            recyclerView.setLayoutManager(linearLayoutManager);
+                            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+                            recyclerView.addItemDecoration(itemDecoration);
+                            adapter = new TicketHistoryAdapter(ticketModelList, this);
+                            recyclerView.setAdapter(adapter);
                         }
 
-                        recyclerView.setLayoutManager(linearLayoutManager);
-                        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-                        recyclerView.addItemDecoration(itemDecoration);
-                        adapter = new TicketHistoryAdapter(ticketModelList, this);
-                        recyclerView.setAdapter(adapter);
                     } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
 

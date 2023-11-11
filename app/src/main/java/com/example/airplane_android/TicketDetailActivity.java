@@ -3,14 +3,17 @@ package com.example.airplane_android;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.airplane_android.models.TicketModel;
+import com.example.airplane_android.razorpay.PaymentActivity;
 import com.example.airplane_android.utils.TicketConstants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,10 +21,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
-public class TicketDetailActivity extends AppCompatActivity {
+public class TicketDetailActivity extends AppCompatActivity{
     ImageView backBtn;
     TextView code,name,dob,from,to,start,end,price,type,payment_status,status;
     Button purchase,cancel;
@@ -43,6 +50,19 @@ public class TicketDetailActivity extends AppCompatActivity {
             }
         });
         backBtn.setOnClickListener(v -> finish());
+        purchase.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent(TicketDetailActivity.this,PaymentActivity.class);
+            @Override
+            public void onClick(View v) {
+                if(ticket!=null) {
+                    intent.putExtra("amount",ticket.getPrice()*100+"");
+                    intent.putExtra("code",ticket.getTicketCode());
+                    startActivity(intent);
+                }
+
+            }
+        });
+        Checkout.preload(getApplicationContext());
     }
     private void getIntentValues(){
         Intent i = getIntent();
@@ -141,6 +161,7 @@ public class TicketDetailActivity extends AppCompatActivity {
 
 
 
+
     //______________________________________INITIALIZE________________________________________
     private void Init(){
         InitTextView();
@@ -169,4 +190,11 @@ public class TicketDetailActivity extends AppCompatActivity {
         cancel = findViewById(R.id.ticket_detail_cancel_btn);
         backBtn = findViewById(R.id.ticket_detail_back_btn);
     }
+
+    //______________________________________DESTROY________________________________________
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }
