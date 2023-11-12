@@ -231,5 +231,35 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/admin_logout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đăng xuất"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_logout_24"
+            app:srcCompat="@drawable/baseline_logout_24" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

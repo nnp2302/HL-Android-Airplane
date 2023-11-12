@@ -108,7 +108,7 @@ public class MainUserFragment extends Fragment {
     if (currentUser == null) {
       txtNoLogin.setVisibility(View.VISIBLE);
       btnNoLoginLink.setVisibility(View.VISIBLE);
-
+      changePassBtn.setVisibility(View.INVISIBLE);
       hasLoginContainer.setVisibility(View.INVISIBLE);
       avatarHasLogin.setVisibility(View.INVISIBLE);
       txtHasLogin.setVisibility(View.INVISIBLE);
@@ -116,6 +116,7 @@ public class MainUserFragment extends Fragment {
       logoutBtn.setVisibility(View.INVISIBLE);
       ticketListBtn.setVisibility(View.INVISIBLE);
     } else {
+      changePassBtn.setVisibility(View.VISIBLE);
       txtNoLogin.setVisibility(View.INVISIBLE);
       btnNoLoginLink.setVisibility(View.INVISIBLE);
       ticketListBtn.setVisibility(View.VISIBLE);
@@ -127,6 +128,23 @@ public class MainUserFragment extends Fragment {
 
       handleUserIsLogin(currentUser.getUid());
     }
+    logoutBtn.setOnClickListener(v -> {
+//      MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(getContext());
+//      dialogBuilder.setTitle("Cảnh báo").setMessage("Bạn có thật sự muốn đăng xuất?")
+//              .setNegativeButton("Không", (dialog, which) -> {
+//                dialog.dismiss();
+//              })
+//              .setPositiveButton("Có", (dialog, which) -> {
+//                firebaseAuth.signOut();
+//                dialog.dismiss();
+//
+//                Toast.makeText(getActivity(), "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//              });
+      firebaseAuth.signOut();
+      startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    });
   }
 
   @Override
@@ -141,20 +159,7 @@ public class MainUserFragment extends Fragment {
 
     ticketListBtn.setOnClickListener( v-> startActivity(new Intent(getActivity(), BookingHistoryActivity.class)));
 
-    logoutBtn.setOnClickListener(v -> {
-      MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(getContext());
-      dialogBuilder.setTitle("Cảnh báo").setMessage("Bạn có thật sự muốn đăng xuất?")
-          .setNegativeButton("Không", (dialog, which) -> {
-            dialog.dismiss();
-          })
-          .setPositiveButton("Có", (dialog, which) -> {
-            firebaseAuth.signOut();
-            dialog.dismiss();
 
-            Toast.makeText(getActivity(), "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(), LoginActivity.class));
-          });
-    });
   }
 
   @SuppressLint("SetTextI18n")

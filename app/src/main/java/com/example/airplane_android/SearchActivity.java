@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +14,13 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.airplane_android.adapters.TripAdapter;
 import com.example.airplane_android.admin.model.Trip;
 import com.example.airplane_android.models.UserTrip;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -137,10 +140,15 @@ public class SearchActivity extends AppCompatActivity {
     lstSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        UserTrip trip = (UserTrip) parent.getItemAtPosition(position);
-        Intent intent = new Intent(SearchActivity.this, BookingActivity.class);
-        intent.putExtra("tripId",trip.getId());
-        startActivity(intent);
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
+          Toast.makeText(SearchActivity.this, "Đăng nhập để đặt vé", Toast.LENGTH_SHORT).show();
+        }else{
+          UserTrip trip = (UserTrip) parent.getItemAtPosition(position);
+          Intent intent = new Intent(SearchActivity.this, BookingActivity.class);
+          intent.putExtra("tripId",trip.getId());
+          startActivity(intent);
+        }
+
       }
     });
     btnBack.setOnClickListener(v -> finish());
@@ -154,7 +162,6 @@ public class SearchActivity extends AppCompatActivity {
       throw new RuntimeException(e);
     }
   }
-
   private String calculateEstimateTime(String startTime, String endTime) {
     final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH);
 

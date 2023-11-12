@@ -8,12 +8,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.example.airplane_android.LoginActivity;
 import com.example.airplane_android.MainActivity;
 import com.example.airplane_android.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
     CardView cardPlane,cardTrip;
+    LinearLayout logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,15 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         cardTrip = findViewById(R.id.cardtrip);
         cardPlane.setOnClickListener(this);
         cardTrip.setOnClickListener(this);
+        logout = findViewById(R.id.admin_logout_btn);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(AdminActivity.this, LoginActivity.class));
+            }
+        });
+
     }
 
     @Override
@@ -34,6 +48,12 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             case R.id.cardtrip:
                 Intent intentTrip = new Intent(AdminActivity.this,TripActivity.class);
                 startActivity(intentTrip);
+                break;
+            case R.id.cardbill:
+                Toast.makeText(AdminActivity.this,"Comming soon...",Toast.LENGTH_LONG);
+                break;
+            case R.id.carduser:
+                Toast.makeText(AdminActivity.this,"Comming soon...",Toast.LENGTH_LONG);
                 break;
         }
     }
