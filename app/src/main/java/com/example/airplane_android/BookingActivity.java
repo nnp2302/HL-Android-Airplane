@@ -101,15 +101,28 @@ public class BookingActivity extends AppCompatActivity {
             MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Chọn ngày")
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
                     .setTextInputFormat(new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH))
                     .build();
+
             datePicker.show(getSupportFragmentManager(), "birthCalendar");
+
             datePicker.addOnPositiveButtonClickListener(selection -> {
-                Date selectedDate = new Date(selection);
-                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-                dob.setText(formatDate.format(selectedDate));
+                long selectedTimestamp = selection;
+
+                // Kiểm tra nếu ngày được chọn nhỏ hơn ngày hiện tại
+                if (selectedTimestamp < MaterialDatePicker.todayInUtcMilliseconds()) {
+                    Date selectedDate = new Date(selectedTimestamp);
+                    SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                    dob.setText(formatDate.format(selectedDate));
+                } else {
+                    // Ngày chọn lớn hơn hoặc bằng ngày hiện tại, thông báo cho người dùng
+                    Toast.makeText(getApplicationContext(), "Vui lòng chọn ngày sinh hợp lệ.", Toast.LENGTH_SHORT).show();
+                }
             });
         });
+
+
         //Xử lý các sự kiện
             //Sự kiện thay đổi số lượng vé
         qty.addTextChangedListener(new TextWatcher() {
@@ -158,33 +171,63 @@ public class BookingActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uid = auth.getUid();
-                Map<String,Object> data = new HashMap<>();
-                data.put("isBusiness",isBusiness.isChecked());
-                data.putAll(userTrip.toMap());
-                int quantity = Integer.parseInt(qty.getText().toString());
-                data.put("quantity", quantity);
-                data.put("purchaseStatus",false);
-                data.put("ticketStatus", TicketConstants.ACTIVE);
-                data.put("isCheckIn",false);
-                int priceValue =Integer.parseInt(price.getText().toString());
-                data.put("Price",priceValue);
-                data.put("fullname",fullname.getText().toString());
-                data.put("dob",dob.getText().toString().replace("/","-"));
-                DocumentReference reference = firestore.collection("Users").document(uid+"/tickets/"+System.currentTimeMillis());
-                reference.set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isComplete()){
-                            Intent intent = new Intent(BookingActivity.this, BookingHistoryActivity.class);
-                            startActivity(intent);
+                if(checkNull()){
+                    Toast.makeText(BookingActivity.this,"Vui lòng nhập đúng định dạng!",Toast.LENGTH_LONG).show();
+                }else{
+                    String uid = auth.getUid();
+                    Map<String,Object> data = new HashMap<>();
+                    data.put("isBusiness",isBusiness.isChecked());
+                    data.putAll(userTrip.toMap());
+                    int quantity = Integer.parseInt(qty.getText().toString());
+                    data.put("quantity", quantity);
+                    data.put("purchaseStatus",false);
+                    data.put("ticketStatus", TicketConstants.ACTIVE);
+                    data.put("isCheckIn",false);
+                    int priceValue =Integer.parseInt(price.getText().toString());
+                    data.put("Price",priceValue);
+                    data.put("fullname",fullname.getText().toString());
+                    data.put("dob",dob.getText().toString().replace("/","-"));
+                    long ticketCode =System.currentTimeMillis();
+                    DocumentReference reference = firestore.collection("Users").document(uid+"/tickets/"+ticketCode);
+                    reference.set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isComplete()){
+                                DocumentReference ref = firestore.collection("Bill").document(""+ticketCode);
+                                data.remove("ticketStatus");
+                                data.remove("isCheckIn");
+                                data.put("paymentMethod","");
+                                data.put("uid",uid);
+                                data.put("email",auth.getCurrentUser().getEmail());
+                                ref.set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isComplete()){
+                                            Intent intent = new Intent(BookingActivity.this, BookingHistoryActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+
             }
         });
     }
-
+    private boolean checkNull(){
+        if(dob.getText().toString().equals(""))
+            return false;
+        if(fullname.getText().toString().equals(""))
+            return false;
+        if(qty.getText().toString().equals(""))
+            return false;
+        else if(Integer.parseInt(qty.getText().toString())<1)
+            return false;
+        return true;
+    }
     @Override
     protected void onStart() {
         super.onStart();

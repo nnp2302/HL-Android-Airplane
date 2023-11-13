@@ -17,7 +17,7 @@ import com.example.airplane_android.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
-    CardView cardPlane,cardTrip;
+    CardView cardPlane,cardTrip,cardBill;
     LinearLayout logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_admin);
         cardPlane = findViewById(R.id.cardplane);
         cardTrip = findViewById(R.id.cardtrip);
+        cardBill = findViewById(R.id.cardbill);
+        cardBill.setOnClickListener(this);
         cardPlane.setOnClickListener(this);
         cardTrip.setOnClickListener(this);
         logout = findViewById(R.id.admin_logout_btn);
@@ -50,7 +52,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intentTrip);
                 break;
             case R.id.cardbill:
-                Toast.makeText(AdminActivity.this,"Comming soon...",Toast.LENGTH_LONG);
+                Intent intentBill = new Intent(AdminActivity.this,BillActivity.class);
+                startActivity(intentBill);
                 break;
             case R.id.carduser:
                 Toast.makeText(AdminActivity.this,"Comming soon...",Toast.LENGTH_LONG);

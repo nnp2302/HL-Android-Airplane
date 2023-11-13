@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,10 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AirplaneAndroid.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".admin.BillDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.BillActivity"
+            android:exported="false" />
+
         <receiver
             android:name="com.razorpay.RzpTokenReceiver"
             android:exported="true"
-            tools:ignore="ExportedReceiver" >
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="rzp.device_token.share" />
             </intent-filter>
@@ -26,6 +32,7 @@
         <meta-data
             android:name="com.razorpay.plugin.googlepay_all"
             android:value="com.razorpay.RzpGpayMerged" />
+
         <activity
             android:name=".razorpay.PaymentActivity"
             android:exported="false" />

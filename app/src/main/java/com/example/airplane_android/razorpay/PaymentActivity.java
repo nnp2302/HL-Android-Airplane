@@ -82,8 +82,15 @@ public class PaymentActivity extends Activity  implements PaymentResultListener 
         doc.update(paystatus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(PaymentActivity.this, BookingHistoryActivity.class);
-                startActivity(intent);
+                DocumentReference reference = firestore.document("Bill/"+code);
+                paystatus.put("paymentMethod","RazorPay");
+                reference.update(paystatus).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(PaymentActivity.this, BookingHistoryActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
