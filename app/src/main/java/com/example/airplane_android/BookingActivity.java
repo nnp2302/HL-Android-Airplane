@@ -171,7 +171,7 @@ public class BookingActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkNull()){
+                if(!checkNull()){
                     Toast.makeText(BookingActivity.this,"Vui lòng nhập đúng định dạng!",Toast.LENGTH_LONG).show();
                 }else{
                     String uid = auth.getUid();
